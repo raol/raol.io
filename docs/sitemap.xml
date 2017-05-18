@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/post/poor-man-language-identification/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/d-ary-heaps/</loc>
+    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/logging-with-log4net-in-azure/</loc>
+    <lastmod>2015-02-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/foldr-in-c/</loc>
+    <lastmod>2014-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/machine-learning-in-azure-publishing/</loc>
+    <lastmod>2014-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/machine-learning-in-azure/</loc>
+    <lastmod>2014-07-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/linear-regression-with-scikit-learn/</loc>
+    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</loc>
+    <lastmod>2014-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/markdown-spell-check-in-sublime/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</loc>
+    <lastmod>2014-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/ascii-art-with-python/</loc>
+    <lastmod>2014-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/blogging-with-github-pages-and-jekyll/</loc>
+    <lastmod>2014-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/algorithms/</loc>
+    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/azure/</loc>
+    <lastmod>2015-02-17T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/functional/</loc>
+    <lastmod>2014-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/jekyll/</loc>
+    <lastmod>2014-02-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/machine-learning/</loc>
+    <lastmod>2014-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/nlp/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/nltk/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/programming/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/python/</loc>
+    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/scikit-learn/</loc>
+    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/sublime/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/tutorial/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

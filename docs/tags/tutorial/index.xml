@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorial on Raol.io</title>
+    <link>http://example.org/tags/tutorial/</link>
+    <description>Recent content in Tutorial on Raol.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Markdown spell check in Sublime</title>
+      <link>http://example.org/post/markdown-spell-check-in-sublime/</link>
+      <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/markdown-spell-check-in-sublime/</guid>
+      <description>&lt;p&gt;Okay. There were tons of typos in my previous post, despite all reviews and fixes. So if something can be done automatically, it should be done automatically.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Blogging with GitHub pages and Jekyll</title>
+      <link>http://example.org/post/blogging-with-github-pages-and-jekyll/</link>
+      <pubDate>Wed, 05 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/blogging-with-github-pages-and-jekyll/</guid>
+      <description>Okay. This is going to be another article about GitHub pages, Jekyll and how to start blogging using theese cool tools. There are plenty of manuals about the topic, but since I&amp;rsquo;m windows user and spent some time trying to set up everything I&amp;rsquo;m going to describe the process from the very beginning.
+Creating GitHub pages First of all you need to create a site using GitHub pages. Go to the http://github.</description>
+    </item>
+    
+  </channel>
+</rss>

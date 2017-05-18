@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Functional on Raol.io</title>
+    <link>http://example.org/tags/functional/</link>
+    <description>Recent content in Functional on Raol.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Nov 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/functional/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Foldr in C#</title>
+      <link>http://example.org/post/foldr-in-c/</link>
+      <pubDate>Thu, 06 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/foldr-in-c/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m exploring and trying to learn Haskell, or at least get better understanding of
+functional programming. So I thought it would be interesting to tease the brain
+and reimplement some of Haskell parts in my &amp;ldquo;mother tongue&amp;rdquo; C#.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

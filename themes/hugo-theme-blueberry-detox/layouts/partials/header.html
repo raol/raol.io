@@ -1,0 +1,17 @@
+    <header id="site-header">
+        <div class="container">
+            <a href="{{ .Site.BaseURL }}" alt="{{ .Site.Title }}"><h1 class="blog-title heading">{{ .Site.Title }}</h1></a>
+            <p class="blog-description">{{ .Site.Params.description }}</p>
+            {{ if .Site.Params.twitter }}
+                <li class="navigation_item">
+                    <a href="http://twitter.com/{{ .Site.Params.twitter }}" title="@{{ .Site.Params.twitter }} on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@{{ .Site.Params.twitter }}</span></a>
+                </li>
+            {{end}}
+            {{ if .Site.Params.github }}
+            <!-- github -->
+                <li class="navigation_item">
+                    <a href="https://github.com/{{ .Site.Params.github }}" title="{{ .Site.Params.github }} on github"> <i class='fa fa-github'></i> <span class="label">{{ .Site.Params.github }}</span> </a>
+                </li>
+            {{ end }} 
+        </div>
+    </header>

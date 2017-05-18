@@ -1,0 +1,10 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Raol.io"
+publishDir = "docs"
+
+[params]
+description = "Thoughts on software engineering."
+twitter = "raoldev"
+github = "raol"
+author = "Oleg Rakitskiy"

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on Raol.io</title>
+    <link>http://example.org/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on Raol.io</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Aug 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Machine Learning in Azure. Publishing.</title>
+      <link>http://example.org/post/machine-learning-in-azure-publishing/</link>
+      <pubDate>Mon, 04 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/machine-learning-in-azure-publishing/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://example.org/2014/07/21/machine-learning-in-azure/&#34;&gt;previous&lt;/a&gt; post I explained how to create new
+Azure machine learning experiment and how to use linear regression to make predictions.
+The experiment is pretty cool itself as any other one, but there is one minor problem with it.
+It&amp;rsquo;s totally useless. Oh, you certainly can open it up and run all steps manually each time you need
+to predict profit (I&amp;rsquo;m still talking about previous post with synthetic experiment and synthetic dataset)
+based on city population, but, agree, it&amp;rsquo;s not very suitable. It would be nice if you had a way
+to store your trained model and supply data you need to analyze, and get back results.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Machine Learning in Azure.</title>
+      <link>http://example.org/post/machine-learning-in-azure/</link>
+      <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/machine-learning-in-azure/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s a really long pause between this post and previous one, but I hope to get pace and write more frequently.&lt;/p&gt;
+
+&lt;p&gt;This time we will review new Azure Machine Learning service that was announced recently and will solve that &amp;ldquo;boring&amp;rdquo;
+linear regression task (from my previous posts) using the ML service.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linear regression with scikit learn</title>
+      <link>http://example.org/post/linear-regression-with-scikit-learn/</link>
+      <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/linear-regression-with-scikit-learn/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s been a while since the last post was written. So it&amp;rsquo;s time to create new one. I know, I promised to explain
+how to choose $ \alpha $ parameter and why it matters, but not this time.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Machine learning with python. Linear regression. Part 2</title>
+      <link>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</link>
+      <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</guid>
+      <description>&lt;p&gt;In the first article on linear regression I promised to show how to do it better,
+so this post will be about truly scientific approach to the problem. Don&amp;rsquo;t worry if you
+don&amp;rsquo;t get it off hand. Honestly speaking it took some time for me to figure out what&amp;rsquo;s going on
+and even now from time to time I take some paper and draw matrices/vectors to be sure I&amp;rsquo;m doing
+everything right.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Machine learning with Python. Linear regression. Part 1</title>
+      <link>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</link>
+      <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m taking cool &lt;a href=&#34;https://www.coursera.org/course/ml&#34;&gt;Machine Learning&lt;/a&gt; class at Coursera, so to get better understanding of the material,
+decided to write a series of blog posts about it. As it clear from the post title, I&amp;rsquo;m going to explain what linear regression is and how it works.
+I don&amp;rsquo;t like to read long-long posts because somewhere in the middle I can&amp;rsquo;t get rid of feeling that the beginning of the post became vague and most of
+facts were forgotten. So it&amp;rsquo;s going to be short and painless.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

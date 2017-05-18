@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
+
+    <head>
+                <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="author" content="Oleg Rakitskiy">
+  
+	
+        <meta property="og:site_name" content="Raol.io">
+        <meta property="og:title" content="Raol.io">
+        <meta property="og:url" content="http://example.org/post/linear-regression-with-scikit-learn/">
+        <meta property="og:description" content="Thoughts on software engineering.">
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content="Oleg Rakitskiy" />
+        <meta property="og:article:published_time" content="2014-05-22T00:00:00Z" />
+    
+        <meta name="generator" content="Hugo 0.21-DEV" />
+        <title>Linear regression with scikit learn &middot; Raol.io</title>
+        <link rel="canonical" href="http://example.org/" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+        <link rel="stylesheet" type="text/css" href="http://example.org/css/main.css"/>
+        <link href="/css/prism.css" rel="stylesheet" />
+        <script src="/js/prism.js"></script>
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$']]}
+            });
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    </head>
+
+<body>
+<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+
+    <header id="site-header">
+        <div class="container">
+            <a href="http://example.org/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
+            <p class="blog-description">Thoughts on software engineering.</p>
+            
+                <li class="navigation_item">
+                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
+                </li>
+            
+            
+            
+                <li class="navigation_item">
+                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
+                </li>
+             
+        </div>
+    </header>
+<main class="content" role="main">
+	<div class="container">
+		<article class="post">
+	<header class="post-header">
+        <h3 class="p-post-title">Linear regression with scikit learn</h3>
+    </header>
+
+    <section class="post-content">
+        <p>It&rsquo;s been a while since the last post was written. So it&rsquo;s time to create new one. I know, I promised to explain
+how to choose $ \alpha $ parameter and why it matters, but not this time.</p>
+
+<p></p>
+
+<p>Let&rsquo;s solve our linear regression problem using some libraries which already have all algorithms implemented. It&rsquo;s not necessary
+to implement all stuff manually, because it&rsquo;s easy to make a mistake and sped tons of hours debugging code. With libraries you
+can just feed the data and get result. Moreover some kind of stuff is not as easy as linear regression (for instance Support Vector Machines)
+and to write gradient descent code for them, lot of time should be spent to solve math equations.</p>
+
+<p>We will use <a href="http://scikit-learn.org">Scikit Learn</a> module. It already has <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html#sklearn.linear_model.LinearRegression">Linear Regression</a> model so we can just pass the data and get our $ \theta $ values returned.</p>
+
+<p>I don&rsquo;t want to copy/paste module documentation in here, you can open website and read everything. Only counterintuitive parts (that were for me, obviously)
+will be explained. Data preparation, vectors&hellip;etc are all the same. There is only thing that is differnt. Remember, for our model
+we added $ X_0 = 1 $ values as first column to get our hypothesis function looks like $ h_\theta(x) = \theta_0 + \theta_1 * x $ .
+In scikit learn there is no need to add that column to our data. We just pass $ X $ and $ Y $ column vectors to get model parameters.</p>
+
+<p>All code for linear regression looks as:</p>
+
+<pre><code class="language-python">from __future__ import print_function
+import numpy as np
+from sklearn import datasets, linear_model
+
+data = np.loadtxt('ex1data1.txt', delimiter=',')
+X = data[:, 0:1]
+Y = data[:, 1:2]
+
+regr = linear_model.LinearRegression()
+regr.fit(X, Y)
+
+print('Coefficients: Theta_0: {0}, Theta_1: {1}'.format(regr.intercept_[0],  regr.coef_[0][0]))
+
+</code></pre>
+
+<p>Pretty easy, isn&rsquo;t it? $ X, Y $ are column vectors, our $ \theta_0 $ value returned in the <code>intercept_</code> property and
+all other $ \theta $ values (we have only one for now, since we&rsquo;re dealing with only one variable) are in the <code>coef_</code>
+property.</p>
+
+<p>And our model is: $$ h_\theta(x) = -3.89578087831 + 1.19303364419*x $$
+which is pretty close to one we got by hand.</p>
+    </section>
+
+    <hr>
+
+    <footer class="post-footer">
+        <section class="f-1">
+            
+            <section class="author">
+                <p>Words by Oleg Rakitskiy</p>
+            </section>
+            
+            
+            <p class="f-post-time"><time datetime="2014-05-22T00:00:00Z">May 22, 2014</time></p>
+        </section>
+                        
+        <section class="f-2">
+            <section class="share">
+                <span>Share:
+                <a class="icon-twitter" href="http://twitter.com/share?text=Linear%20regression%20with%20scikit%20learn&url=http%3a%2f%2fexample.org%2fpost%2flinear-regression-with-scikit-learn%2f"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fpost%2flinear-regression-with-scikit-learn%2f"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fexample.org%2fpost%2flinear-regression-with-scikit-learn%2f"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                </span>
+            </section>
+
+            
+            	<span class="f-post-tags"><i class="fa fa-tag"></i>
+            	machine learning, python, scikit learn
+            	</span>
+            
+        </section>
+                        
+    </footer>
+</article>
+	</div>
+</main>
+    <footer id="site-footer">
+        <div class="container">
+          
+          <a href="http://example.org/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
+          <section>&copy; <a href="http://example.org/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="http://example.org/js/fittext.js"></script>
+    <script type="text/javascript">
+      $(".heading").fitText();
+    </script>
+
+
+</body>
+</html>

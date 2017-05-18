@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
+
+    <head>
+                <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="author" content="Oleg Rakitskiy">
+  
+	
+        <meta property="og:site_name" content="Raol.io">
+        <meta property="og:title" content="Raol.io">
+        <meta property="og:url" content="http://example.org/post/machine-learning-in-azure/">
+        <meta property="og:description" content="Thoughts on software engineering.">
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content="Oleg Rakitskiy" />
+        <meta property="og:article:published_time" content="2014-07-21T00:00:00Z" />
+    
+        <meta name="generator" content="Hugo 0.21-DEV" />
+        <title>Machine Learning in Azure. &middot; Raol.io</title>
+        <link rel="canonical" href="http://example.org/" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+        <link rel="stylesheet" type="text/css" href="http://example.org/css/main.css"/>
+        <link href="/css/prism.css" rel="stylesheet" />
+        <script src="/js/prism.js"></script>
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$']]}
+            });
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    </head>
+
+<body>
+<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+
+    <header id="site-header">
+        <div class="container">
+            <a href="http://example.org/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
+            <p class="blog-description">Thoughts on software engineering.</p>
+            
+                <li class="navigation_item">
+                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
+                </li>
+            
+            
+            
+                <li class="navigation_item">
+                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
+                </li>
+             
+        </div>
+    </header>
+<main class="content" role="main">
+	<div class="container">
+		<article class="post">
+	<header class="post-header">
+        <h3 class="p-post-title">Machine Learning in Azure.</h3>
+    </header>
+
+    <section class="post-content">
+        <p>It&rsquo;s a really long pause between this post and previous one, but I hope to get pace and write more frequently.</p>
+
+<p>This time we will review new Azure Machine Learning service that was announced recently and will solve that &ldquo;boring&rdquo;
+linear regression task (from my previous posts) using the ML service.</p>
+
+<p></p>
+
+<p>First of all it&rsquo;s really cool that anyone, who is not familiar with machine learning internals and has only tenuous understanding of
+how it works, can upload data and classify/estimate/make predictions. But on the other hand, I can&rsquo;t say, that Azure ML is a silver bullet,
+at least it was easier to me to code solution in Python than use Azure.</p>
+
+<p>I assume that you familiar with Azure and have trial or paid account there. If not, it worth creating it and playing a little. It&rsquo;s free
+for 30 days. Anyway let&rsquo;s get started.</p>
+
+<p>First of all we need to create Machine Learning workspace. After filling all required fields, new ML workspace is created and you can
+start you analysis. It appears at your Azure dashboard, just click on it, and then click <em>Go To ML Studio</em> link.</p>
+
+<p><img src="/assets/images/azure_ml/ml_workspace.png" alt="ml-workspace" /></p>
+
+<p>To start analysis, we have to create dataset first. Certainly, sample dataset can be used, and Azure provides them for tests and experiments.
+But since we are in context of our previous posts on ML topic, let&rsquo;s use our old dataset. You can download dataset <a href="/assets/files/ex1data1.txt">here</a>,
+if you want to repeat my post step by step.</p>
+
+<p><img src="/assets/images/azure_ml/create_dataset.png" alt="create-dataset" /></p>
+
+<p>Choose any name for the dataset and specify <em>CSV file with header</em> in the <strong>Dataset type</strong> field.</p>
+
+<p>Now it&rsquo;s time to create <em>Experiment</em>. On the bottom panel choose <em>Add new</em>-&gt;<em>Experiment</em> which is kind of intuitive step.</p>
+
+<p>New window looking as at the picture below will be opened and you can finally start modeling process.</p>
+
+<p><img src="/assets/images/azure_ml/new_experiment.png" alt="create-dataset" /></p>
+
+<p>First of all we need our dataset to be used. Expand <em>Saved Datasets</em>, find it there and drag to the experiment window. Then we need to choose columns
+we want operate with, i.e. our feature columns and label column. Drag item <em>Data Transformations</em> -&gt; <em>Manipulation</em> -&gt; <em>Project Columns</em> to the experiment window, click it
+and at the right side of the ML studio in the task properties click <em>Launch column selector</em>. Since we have only two columns in our dataset we won&rsquo;t spend
+too much time in the settings window. Choose <em>Begin With</em> -&gt; <em>All columns</em> and remove any error rows that are below this label. Now your experiment window should
+look like below</p>
+
+<p><img src="/assets/images/azure_ml/experiment_proj_col.png" alt="create-dataset" /></p>
+
+<p>Now we have to choose which column we&rsquo;re trying to predict, i.e. label column. To do it, drag <em>Data Transformation</em> -&gt; <em>Manipulation</em> -&gt; <em>Metadata Editor</em>.</p>
+
+<p><img src="/assets/images/azure_ml/metadata.png" alt="create-dataset" /></p>
+
+<p>In the properties of the <em>Metadata Editor</em> task at the right side (OK, this is the last mention of the &ldquo;right side&rdquo;. All properties are displayed there, so
+I won&rsquo;t say it again and again) of your experiment launch column selector and choose following configuration there.</p>
+
+<p><img src="/assets/images/azure_ml/metadata_columns.png" alt="create-dataset" /></p>
+
+<p>as I told we need to choose which column is label, i.e. which one is the outcome of our experiment. All other columns act as input values.
+As we&rsquo;re estimating profit of the city based on its population, it&rsquo;s clear that <code>profit</code> column is our label.</p>
+
+<p>Close the window and go to the properties window again and configure following values there</p>
+
+<ul>
+<li>Data Type - Double</li>
+<li>Categorical - NonCategorical</li>
+<li>Fields - Labels</li>
+</ul>
+
+<p>By the way, you can play a little with the added data and visualize them to view relationship between features and labels.
+To do it, point mouse to the output port of the <em>Dataset</em> task, click it and in the drop-down menu choose visualize.
+You can click columns to add them to the plot and in the top of the view, if <code>compare to</code> is filled in, relation between columns
+is displayed.</p>
+
+<p><img src="/assets/images/azure_ml/visualize.png" alt="create-dataset" /></p>
+
+<p>So now we have everything to train our model and estimate profit value of the any city population.</p>
+
+<p>Drop following items to the experiment: <em>Machine Learning</em> -&gt; <em>Initialize Model</em> -&gt; <em>Regression</em> -&gt; <em>Linear Regression</em> and
+<em>Train</em> -&gt; <em>Train model</em>.</p>
+
+<p>Then connect output port of the <em>Metadata Editor</em> to the right or <code>dataset</code> port of the <em>Train Model</em> item and left or
+<code>untrained model</code> port of the <em>Train Model</em> task to the one and only port of the  <em>Linear Regression</em> task. After it&rsquo;s done,
+you will have trained model and ready to estimate new values of the profit by the city population.</p>
+
+<p>Drag <em>Machine Learning</em> -&gt; <em>Score</em> -&gt; <em>Score Model</em> to the experiment and connect its <code>dataset</code> port to the <em>Metadata Editor</em>
+and <code>trained model</code> to the task <em>Train Model</em>. If you did everything right, experiment would look like this</p>
+
+<p><img src="/assets/images/azure_ml/final_experiment.png" alt="create-dataset" /></p>
+
+<p>It&rsquo;s time to run it and check our results.</p>
+
+<p>Press Run button and after experiment is executed, click <code>scored model</code> port of the <em>Score Model</em> dataset to open results
+window. Unfortunately linear function coefficients are not reported by the ML tool, but you can build scatter plots to see
+original labels and estimated ones.</p>
+
+<p><img src="/assets/images/azure_ml/original_estimated.png" alt="create-dataset" /></p>
+
+<p>At the end of your experiment you should have estimates like at the picture above.</p>
+
+<p>And that&rsquo;s it.</p>
+    </section>
+
+    <hr>
+
+    <footer class="post-footer">
+        <section class="f-1">
+            
+            <section class="author">
+                <p>Words by Oleg Rakitskiy</p>
+            </section>
+            
+            
+            <p class="f-post-time"><time datetime="2014-07-21T00:00:00Z">July 21, 2014</time></p>
+        </section>
+                        
+        <section class="f-2">
+            <section class="share">
+                <span>Share:
+                <a class="icon-twitter" href="http://twitter.com/share?text=Machine%20Learning%20in%20Azure.&url=http%3a%2f%2fexample.org%2fpost%2fmachine-learning-in-azure%2f"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fexample.org%2fpost%2fmachine-learning-in-azure%2f"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fexample.org%2fpost%2fmachine-learning-in-azure%2f"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                </span>
+            </section>
+
+            
+            	<span class="f-post-tags"><i class="fa fa-tag"></i>
+            	machine learning, azure
+            	</span>
+            
+        </section>
+                        
+    </footer>
+</article>
+	</div>
+</main>
+    <footer id="site-footer">
+        <div class="container">
+          
+          <a href="http://example.org/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
+          <section>&copy; <a href="http://example.org/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="http://example.org/js/fittext.js"></script>
+    <script type="text/javascript">
+      $(".heading").fitText();
+    </script>
+
+
+</body>
+</html>
