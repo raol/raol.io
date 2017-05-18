@@ -83,9 +83,9 @@ everything right.</p>
 $$
 \vec{X} =
 \begin{bmatrix}
-x_1 \<br />
-x_2 \<br />
-\vdots \<br />
+x_1 \\<br />
+x_2 \\<br />
+\vdots \\<br />
 x_n
 \end{bmatrix}
 $$</p>
@@ -114,9 +114,9 @@ x_n
 \end{bmatrix}
 *
 \begin{bmatrix}
-x_1 \<br />
-x_2 \<br />
-\vdots \<br />
+x_1 \\<br />
+x_2 \\<br />
+\vdots \\<br />
 x_n
 \end{bmatrix} = \vec{X}^T * \vec{X}
 $$</p>
@@ -130,7 +130,7 @@ $ y = \theta_0*1 + \theta_1*x $. Clear now? If not, don&rsquo;t worry, below I&r
 <p>It&rsquo;s easy to see (frankly saying it was not so obvious until I was told about it) that formula for $ Y $ looks as matrix multiplication, where $ \theta $ is column vector
 $$ \theta =
 \begin{bmatrix}
-\theta_0 \\
+\theta_0 \\\
 \theta_1
 \end{bmatrix} $$
 and $ X $ is $ m\times 2 $ matrix, where m is the size of our dataset. So let&rsquo;s rewrite it as</p>
@@ -138,20 +138,20 @@ and $ X $ is $ m\times 2 $ matrix, where m is the size of our dataset. So let&rs
 <p>$$
 h_{\theta}(x) =
 \begin{bmatrix}
-1 &amp; x_1^{(1)} \<br />
-1 &amp; x_1^{(2)} \<br />
-\vdots &amp; \vdots \<br />
+1 &amp; x_1^{(1)} \\<br />
+1 &amp; x_1^{(2)} \\<br />
+\vdots &amp; \vdots \\<br />
 1 &amp; x_1^{(m)}
 \end{bmatrix}
 *
 \begin{bmatrix}
-\theta_0 \<br />
+\theta_0 \\<br />
 \theta_1
 \end{bmatrix}
 = \begin{bmatrix}
-y^{(1)} \<br />
-y^{(2)} \<br />
-\vdots \<br />
+y^{(1)} \\<br />
+y^{(2)} \\<br />
+\vdots \\<br />
 y^{(m)}
 \end{bmatrix}
 $$

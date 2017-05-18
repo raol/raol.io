@@ -16,9 +16,9 @@ First let's consider fairly simple example. Suppose you were given following col
 $$ 
 \\vec{X} = 
 \\begin{bmatrix} 
-x\_1 \\\\
-x\_2 \\\\
-\\vdots \\\\
+x\_1 \\\\\\
+x\_2 \\\\\\
+\\vdots \\\\\\
 x\_n
 \\end{bmatrix}
 $$
@@ -48,9 +48,9 @@ x\_n
 \\end{bmatrix}
 *
 \\begin{bmatrix} 
-x\_1 \\\\
-x\_2 \\\\
-\\vdots \\\\
+x\_1 \\\\\\
+x\_2 \\\\\\
+\\vdots \\\\\\
 x\_n
 \\end{bmatrix} = \\vec{X}^T * \\vec{X}
 $$
@@ -64,7 +64,7 @@ $ y = \\theta\_0\*1 + \\theta\_1\*x $. Clear now? If not, don't worry, below I'l
 It's easy to see (frankly saying it was not so obvious until I was told about it) that formula for $ Y $ looks as matrix multiplication, where $ \\theta $ is column vector
 $$ \\theta = 
 \\begin{bmatrix} 
-\\theta\_0 \\\\ 
+\\theta\_0 \\\\\\ 
 \\theta\_1 
 \\end{bmatrix} $$
 and $ X $ is $ m\\times 2 $ matrix, where m is the size of our dataset. So let's rewrite it as
@@ -72,20 +72,20 @@ and $ X $ is $ m\\times 2 $ matrix, where m is the size of our dataset. So let's
 $$ 
 h\_{\\theta}(x) = 
 \\begin{bmatrix}
-1 & x\_1^{(1)} \\\\
-1 & x\_1^{(2)} \\\\
-\\vdots & \\vdots \\\\
+1 & x\_1^{(1)} \\\\\\
+1 & x\_1^{(2)} \\\\\\
+\\vdots & \\vdots \\\\\\
 1 & x\_1^{(m)}
 \\end{bmatrix}
 \*
 \\begin{bmatrix}
-\\theta\_0 \\\\
+\\theta\_0 \\\\\\
 \\theta\_1
 \\end{bmatrix}
 = \\begin{bmatrix}
-y^{(1)} \\\\
-y^{(2)} \\\\
-\\vdots \\\\
+y^{(1)} \\\\\\
+y^{(2)} \\\\\\
+\\vdots \\\\\\
 y^{(m)}
 \\end{bmatrix}
 $$
