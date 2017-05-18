@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Raol.io</title>
-    <link>http://example.org/tags/python/</link>
+    <link>http://raol.io/tags/python/</link>
     <description>Recent content in Python on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 22 May 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Linear regression with scikit learn</title>
-      <link>http://example.org/post/linear-regression-with-scikit-learn/</link>
+      <link>http://raol.io/post/linear-regression-with-scikit-learn/</link>
       <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/linear-regression-with-scikit-learn/</guid>
+      <guid>http://raol.io/post/linear-regression-with-scikit-learn/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s been a while since the last post was written. So it&amp;rsquo;s time to create new one. I know, I promised to explain
 how to choose $ \alpha $ parameter and why it matters, but not this time.&lt;/p&gt;
 
@@ -25,10 +25,10 @@ how to choose $ \alpha $ parameter and why it matters, but not this time.&lt;/p&
     
     <item>
       <title>Machine learning with python. Linear regression. Part 2</title>
-      <link>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</link>
+      <link>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</link>
       <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</guid>
+      <guid>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</guid>
       <description>&lt;p&gt;In the first article on linear regression I promised to show how to do it better,
 so this post will be about truly scientific approach to the problem. Don&amp;rsquo;t worry if you
 don&amp;rsquo;t get it off hand. Honestly speaking it took some time for me to figure out what&amp;rsquo;s going on
@@ -40,10 +40,10 @@ everything right.&lt;/p&gt;
     
     <item>
       <title>Machine learning with Python. Linear regression. Part 1</title>
-      <link>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</link>
+      <link>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</link>
       <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</guid>
+      <guid>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m taking cool &lt;a href=&#34;https://www.coursera.org/course/ml&#34;&gt;Machine Learning&lt;/a&gt; class at Coursera, so to get better understanding of the material,
 decided to write a series of blog posts about it. As it clear from the post title, I&amp;rsquo;m going to explain what linear regression is and how it works.
 I don&amp;rsquo;t like to read long-long posts because somewhere in the middle I can&amp;rsquo;t get rid of feeling that the beginning of the post became vague and most of
@@ -54,10 +54,10 @@ facts were forgotten. So it&amp;rsquo;s going to be short and painless.&lt;/p&gt
     
     <item>
       <title>ASCII Art With Python</title>
-      <link>http://example.org/post/ascii-art-with-python/</link>
+      <link>http://raol.io/post/ascii-art-with-python/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/ascii-art-with-python/</guid>
+      <guid>http://raol.io/post/ascii-art-with-python/</guid>
       <description>&lt;p&gt;I was always curious about creating cool ASCII &amp;ldquo;pictures&amp;rdquo; from actual images and finally decided to figure out how to do it.
 It&amp;rsquo;s fairly simple. What we need to do is to resize image to fit in ASCII console (120 columns) keeping it&amp;rsquo;s original ratio.
 Then convert it to greyscale and map grey level to ASCII symbol.&lt;/p&gt;

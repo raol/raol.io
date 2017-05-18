@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jekyll on Raol.io</title>
-    <link>http://example.org/tags/jekyll/</link>
+    <link>http://raol.io/tags/jekyll/</link>
     <description>Recent content in Jekyll on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 05 Feb 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Blogging with GitHub pages and Jekyll</title>
-      <link>http://example.org/post/blogging-with-github-pages-and-jekyll/</link>
+      <link>http://raol.io/post/blogging-with-github-pages-and-jekyll/</link>
       <pubDate>Wed, 05 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/blogging-with-github-pages-and-jekyll/</guid>
+      <guid>http://raol.io/post/blogging-with-github-pages-and-jekyll/</guid>
       <description>Okay. This is going to be another article about GitHub pages, Jekyll and how to start blogging using theese cool tools. There are plenty of manuals about the topic, but since I&amp;rsquo;m windows user and spent some time trying to set up everything I&amp;rsquo;m going to describe the process from the very beginning.
 Creating GitHub pages First of all you need to create a site using GitHub pages. Go to the http://github.</description>
     </item>

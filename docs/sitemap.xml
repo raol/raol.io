@@ -3,156 +3,156 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/post/poor-man-language-identification/</loc>
+    <loc>http://raol.io/post/poor-man-language-identification/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/d-ary-heaps/</loc>
+    <loc>http://raol.io/post/d-ary-heaps/</loc>
     <lastmod>2015-04-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/logging-with-log4net-in-azure/</loc>
+    <loc>http://raol.io/post/logging-with-log4net-in-azure/</loc>
     <lastmod>2015-02-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/foldr-in-c/</loc>
+    <loc>http://raol.io/post/foldr-in-c/</loc>
     <lastmod>2014-11-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/machine-learning-in-azure-publishing/</loc>
+    <loc>http://raol.io/post/machine-learning-in-azure-publishing/</loc>
     <lastmod>2014-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/machine-learning-in-azure/</loc>
+    <loc>http://raol.io/post/machine-learning-in-azure/</loc>
     <lastmod>2014-07-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/linear-regression-with-scikit-learn/</loc>
+    <loc>http://raol.io/post/linear-regression-with-scikit-learn/</loc>
     <lastmod>2014-05-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/machine-learning-with-python-linear-regression-part-2/</loc>
+    <loc>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</loc>
     <lastmod>2014-04-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/markdown-spell-check-in-sublime/</loc>
+    <loc>http://raol.io/post/markdown-spell-check-in-sublime/</loc>
     <lastmod>2014-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/machine-learning-with-python-linear-regression-part-1/</loc>
+    <loc>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</loc>
     <lastmod>2014-04-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/ascii-art-with-python/</loc>
+    <loc>http://raol.io/post/ascii-art-with-python/</loc>
     <lastmod>2014-03-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/post/blogging-with-github-pages-and-jekyll/</loc>
+    <loc>http://raol.io/post/blogging-with-github-pages-and-jekyll/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/tags/algorithms/</loc>
+    <loc>http://raol.io/tags/algorithms/</loc>
     <lastmod>2015-04-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/azure/</loc>
+    <loc>http://raol.io/tags/azure/</loc>
     <lastmod>2015-02-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://raol.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/functional/</loc>
+    <loc>http://raol.io/tags/functional/</loc>
     <lastmod>2014-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/jekyll/</loc>
+    <loc>http://raol.io/tags/jekyll/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/machine-learning/</loc>
+    <loc>http://raol.io/tags/machine-learning/</loc>
     <lastmod>2014-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/nlp/</loc>
+    <loc>http://raol.io/tags/nlp/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/nltk/</loc>
+    <loc>http://raol.io/tags/nltk/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/post/</loc>
+    <loc>http://raol.io/post/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/programming/</loc>
+    <loc>http://raol.io/tags/programming/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/python/</loc>
+    <loc>http://raol.io/tags/python/</loc>
     <lastmod>2014-05-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>http://raol.io/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/scikit-learn/</loc>
+    <loc>http://raol.io/tags/scikit-learn/</loc>
     <lastmod>2014-05-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/sublime/</loc>
+    <loc>http://raol.io/tags/sublime/</loc>
     <lastmod>2014-04-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>http://raol.io/tags/</loc>
     <lastmod>2015-04-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/tutorial/</loc>
+    <loc>http://raol.io/tags/tutorial/</loc>
     <lastmod>2014-04-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

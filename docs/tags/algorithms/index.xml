@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algorithms on Raol.io</title>
-    <link>http://example.org/tags/algorithms/</link>
+    <link>http://raol.io/tags/algorithms/</link>
     <description>Recent content in Algorithms on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Apr 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>d ary heaps.</title>
-      <link>http://example.org/post/d-ary-heaps/</link>
+      <link>http://raol.io/post/d-ary-heaps/</link>
       <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/d-ary-heaps/</guid>
+      <guid>http://raol.io/post/d-ary-heaps/</guid>
       <description>&lt;p&gt;Sometimes it&amp;rsquo;s a pleasure to abandon that very-cool-enterprise development, to
 take some book on algorithms and to solve couple of problems from it. Just to keep
 brain if not sharp, but at least not rusty. Also diving in some problem of that kind

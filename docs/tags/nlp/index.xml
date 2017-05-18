@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nlp on Raol.io</title>
-    <link>http://example.org/tags/nlp/</link>
+    <link>http://raol.io/tags/nlp/</link>
     <description>Recent content in Nlp on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Oct 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/nlp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Poor man language identification.</title>
-      <link>http://example.org/post/poor-man-language-identification/</link>
+      <link>http://raol.io/post/poor-man-language-identification/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/poor-man-language-identification/</guid>
+      <guid>http://raol.io/post/poor-man-language-identification/</guid>
       <description>&lt;p&gt;Language identification, as it&amp;rsquo;s easy to guess, is the task of identifying the language
 of a document. For instance search engines may store the language of the indexed document
 and provide option such as &lt;em&gt;Search for English results only&lt;/em&gt; as Google does. But in order

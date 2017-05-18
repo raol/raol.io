@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Azure on Raol.io</title>
-    <link>http://example.org/tags/azure/</link>
+    <link>http://raol.io/tags/azure/</link>
     <description>Recent content in Azure on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 17 Feb 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Logging with log4net in Azure</title>
-      <link>http://example.org/post/logging-with-log4net-in-azure/</link>
+      <link>http://raol.io/post/logging-with-log4net-in-azure/</link>
       <pubDate>Tue, 17 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/logging-with-log4net-in-azure/</guid>
+      <guid>http://raol.io/post/logging-with-log4net-in-azure/</guid>
       <description>&lt;p&gt;Though you can configure basic logging for Azure using built in
 &lt;a href=&#34;http://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-diagnostics/&#34;&gt;diagnostic tools&lt;/a&gt;
 sometimes it&amp;rsquo;s necessary to have more control on logging. So it might be a good idea
@@ -27,11 +27,11 @@ to use log4net on top of the azure diagnostics and configure it to fit all your 
     
     <item>
       <title>Machine Learning in Azure. Publishing.</title>
-      <link>http://example.org/post/machine-learning-in-azure-publishing/</link>
+      <link>http://raol.io/post/machine-learning-in-azure-publishing/</link>
       <pubDate>Mon, 04 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/machine-learning-in-azure-publishing/</guid>
-      <description>&lt;p&gt;In the &lt;a href=&#34;http://example.org/2014/07/21/machine-learning-in-azure/&#34;&gt;previous&lt;/a&gt; post I explained how to create new
+      <guid>http://raol.io/post/machine-learning-in-azure-publishing/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;http://raol.io/2014/07/21/machine-learning-in-azure/&#34;&gt;previous&lt;/a&gt; post I explained how to create new
 Azure machine learning experiment and how to use linear regression to make predictions.
 The experiment is pretty cool itself as any other one, but there is one minor problem with it.
 It&amp;rsquo;s totally useless. Oh, you certainly can open it up and run all steps manually each time you need
@@ -44,10 +44,10 @@ to store your trained model and supply data you need to analyze, and get back re
     
     <item>
       <title>Machine Learning in Azure.</title>
-      <link>http://example.org/post/machine-learning-in-azure/</link>
+      <link>http://raol.io/post/machine-learning-in-azure/</link>
       <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/machine-learning-in-azure/</guid>
+      <guid>http://raol.io/post/machine-learning-in-azure/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s a really long pause between this post and previous one, but I hope to get pace and write more frequently.&lt;/p&gt;
 
 &lt;p&gt;This time we will review new Azure Machine Learning service that was announced recently and will solve that &amp;ldquo;boring&amp;rdquo;

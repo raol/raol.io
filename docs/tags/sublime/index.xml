@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sublime on Raol.io</title>
-    <link>http://example.org/tags/sublime/</link>
+    <link>http://raol.io/tags/sublime/</link>
     <description>Recent content in Sublime on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 16 Apr 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/sublime/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Markdown spell check in Sublime</title>
-      <link>http://example.org/post/markdown-spell-check-in-sublime/</link>
+      <link>http://raol.io/post/markdown-spell-check-in-sublime/</link>
       <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/post/markdown-spell-check-in-sublime/</guid>
+      <guid>http://raol.io/post/markdown-spell-check-in-sublime/</guid>
       <description>&lt;p&gt;Okay. There were tons of typos in my previous post, despite all reviews and fixes. So if something can be done automatically, it should be done automatically.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>

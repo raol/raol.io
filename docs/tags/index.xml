@@ -2,120 +2,120 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Raol.io</title>
-    <link>http://example.org/tags/</link>
+    <link>http://raol.io/tags/</link>
     <description>Recent content in Tags on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Apr 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://raol.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Algorithms</title>
-      <link>http://example.org/tags/algorithms/</link>
+      <link>http://raol.io/tags/algorithms/</link>
       <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/algorithms/</guid>
+      <guid>http://raol.io/tags/algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Azure</title>
-      <link>http://example.org/tags/azure/</link>
+      <link>http://raol.io/tags/azure/</link>
       <pubDate>Tue, 17 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/azure/</guid>
+      <guid>http://raol.io/tags/azure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Functional</title>
-      <link>http://example.org/tags/functional/</link>
+      <link>http://raol.io/tags/functional/</link>
       <pubDate>Thu, 06 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/functional/</guid>
+      <guid>http://raol.io/tags/functional/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Jekyll</title>
-      <link>http://example.org/tags/jekyll/</link>
+      <link>http://raol.io/tags/jekyll/</link>
       <pubDate>Wed, 05 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/jekyll/</guid>
+      <guid>http://raol.io/tags/jekyll/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Machine Learning</title>
-      <link>http://example.org/tags/machine-learning/</link>
+      <link>http://raol.io/tags/machine-learning/</link>
       <pubDate>Mon, 04 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/machine-learning/</guid>
+      <guid>http://raol.io/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nlp</title>
-      <link>http://example.org/tags/nlp/</link>
+      <link>http://raol.io/tags/nlp/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/nlp/</guid>
+      <guid>http://raol.io/tags/nlp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nltk</title>
-      <link>http://example.org/tags/nltk/</link>
+      <link>http://raol.io/tags/nltk/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/nltk/</guid>
+      <guid>http://raol.io/tags/nltk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>http://example.org/tags/programming/</link>
+      <link>http://raol.io/tags/programming/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/programming/</guid>
+      <guid>http://raol.io/tags/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>http://example.org/tags/python/</link>
+      <link>http://raol.io/tags/python/</link>
       <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/python/</guid>
+      <guid>http://raol.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scikit Learn</title>
-      <link>http://example.org/tags/scikit-learn/</link>
+      <link>http://raol.io/tags/scikit-learn/</link>
       <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/scikit-learn/</guid>
+      <guid>http://raol.io/tags/scikit-learn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sublime</title>
-      <link>http://example.org/tags/sublime/</link>
+      <link>http://raol.io/tags/sublime/</link>
       <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/sublime/</guid>
+      <guid>http://raol.io/tags/sublime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tutorial</title>
-      <link>http://example.org/tags/tutorial/</link>
+      <link>http://raol.io/tags/tutorial/</link>
       <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/tags/tutorial/</guid>
+      <guid>http://raol.io/tags/tutorial/</guid>
       <description></description>
     </item>
     
