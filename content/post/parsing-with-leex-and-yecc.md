@@ -223,4 +223,6 @@ The whole language for the following expression will look as:
 
 #### Conclusion
 
-In this post we've built a simple lexer and a parser for the small arithmetic expression grammar. Though parsing a real language like Erlang is a way harder comparing to the examples we used in the post, but knowledge how and where to start is still valuable. Using the tools from the post you can easily move from trivial grammar to more complex one. 
+In this post we've built a simple lexer and a parser for the small arithmetic expression grammar. Though parsing a real language like Erlang is a way harder comparing to the examples we used in the post, but knowledge how and where to start is still valuable. Using the tools from the post you can easily move from trivial grammar to more complex one.
+
+And the full code from the post is available here [https://github.com/raol/ecalculator](https://github.com/raol/ecalculator).
