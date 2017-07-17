@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
+
+    <head>
+                <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="author" content="Oleg Rakitskiy">
+  
+	
+        <meta property="og:site_name" content="Raol.io">
+        <meta property="og:title" content="Raol.io">
+        <meta property="og:url" content="http://raol.io/post/parsing-with-leex-and-yecc/">
+        <meta property="og:description" content="Thoughts on software engineering.">
+    
+        <meta property="og:type" content="article" />
+        <meta property="og:article:author" content="Oleg Rakitskiy" />
+        <meta property="og:article:published_time" content="2017-07-18T00:01:06&#43;03:00" />
+    
+        <meta name="generator" content="Hugo 0.21-DEV" />
+        <title>Parsing with leex and yecc &middot; Raol.io</title>
+        <link rel="canonical" href="http://raol.io/" />
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
+        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
+        <link href="/css/prism.css" rel="stylesheet" />
+        <script src="/js/prism.js"></script>
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$']]}
+            });
+        </script>
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    </head>
+
+<body>
+<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+
+    <header id="site-header">
+        <div class="container">
+            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
+            <p class="blog-description">Thoughts on software engineering.</p>
+            
+                <li class="navigation_item">
+                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
+                </li>
+            
+            
+            
+                <li class="navigation_item">
+                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
+                </li>
+             
+        </div>
+    </header>
+<main class="content" role="main">
+	<div class="container">
+		<article class="post">
+	<header class="post-header">
+        <h3 class="p-post-title">Parsing with leex and yecc</h3>
+    </header>
+
+    <section class="post-content">
+        
+
+<p>This post is mostly inspired by the Erlang <a href="https://www.youtube.com/watch?v=gKRyAb7d8lo&amp;list=PLR812eVbehlwEArT3Bv3UfcM9wR3AEZb5">master class</a> taught by University of Kent. Though with some modifications. The master class is about building a simple calculator program in Erlang, with little information on parsing, which is done by hands there. However there are tools <a href="http://erlang.org/doc/man/leex.html">leex</a> and <a href="http://erlang.org/doc/man/yecc.html">yecc</a> in Erlang designed to handle parsing part, and they are far less documented than their counterparts. So this blog post will, I hope, shrink the documentation gap.</p>
+
+<p>In this post I will explain how to use <code>leex</code> and <code>yecc</code> to build a simple parser of arithmetic expressions. Also, once they are parsed, I will evaluate them using several strategies. In more details we first need to move from this form <code>1 + 2 * 3</code> to this one</p>
+
+<pre><code class="language-erlang">{add, 
+    1, 
+    {mult, 
+        2, 
+        3
+    }
+}
+</code></pre>
+
+<p>which is the tree representation of the first expression. And then we will evaluate the parsed expression to get its result.</p>
+
+<h4 id="the-lexer">The lexer</h4>
+
+<p>Since parsers operate on tokens and not on a whole string, before feeding an expression to the parser, we need to transform a string to a list of of tokens. First, let&rsquo;s define tokens used in expressions: <code>number</code>, <code>variable</code>, and arithmetic expression. Variables are used to pass context with bag of values to our evaluator and refer to this values from the expression. Since we a ready to write the lexer, let&rsquo;s look on the <code>leex</code> file syntax.</p>
+
+<p>The file consists of three sections:</p>
+
+<ul>
+<li>Definitions. - they are variables that can be simply reused in the Rules. section</li>
+<li>Rules. - the regular expressions based on which tokens are matched and generated</li>
+<li>Erlang code. - helper functions that may be used in the Rules. section.</li>
+</ul>
+
+<p>For instance number definition is <code>NUMBER = [0-9]+</code> and variable definition is <code>VAR = [A-Za-z][A-Za-z0-9]*</code>. Below is the full listing of the lexer grammar. It is stored in the file with <code>.xrl</code> extension <code>calculator_lexer.xrl</code>:</p>
+
+<pre><code class="language-erlang">Definitions.
+
+NUMBER = [0-9]+
+WS = [\s\t]
+LB = \n|\r\n|\r
+VAR = [A-Za-z][A-Za-z0-9]*
+
+Rules.
+{VAR}      : {token, {var, TokenLine, list_to_atom(TokenChars)}}.
+{NUMBER}    : {token, {number, TokenLine, list_to_integer(TokenChars)}}.
+\+          : {token, {plus, TokenLine}}.
+\-          : {token, {minus, TokenLine}}.
+\*          : {token, {mult, TokenLine}}.
+\/          : {token, {divd, TokenLine}}.
+\(          : {token, {lparen, TokenLine}}.
+\)          : {token, {rparen, TokenLine}}.
+{WS}        : skip_token.
+{LB}        : skip_token.
+
+Erlang code.
+
+</code></pre>
+
+<p>According to the documentation on <code>leex</code>, the code from the Rules section must return one of the following:</p>
+
+<ul>
+<li><code>{token, Token}</code> - the Token will be returned to the caller</li>
+<li><code>{end_token, Token}</code> - returned token is the last token and tokenizing process will stop</li>
+<li><code>skip_token</code> - strings that match this rule are ignored and not returned to the caller</li>
+<li><code>{error, ErrorString}</code> - return the ErrorString</li>
+</ul>
+
+<p>Also <code>leex</code> has following predefined variables:</p>
+
+<ul>
+<li>TokenChars - list of matched characters</li>
+<li>TokenLine - line number</li>
+<li>TokenLen - length of the match</li>
+</ul>
+
+<p>So now everything is clear. For <code>var</code> and <code>number</code> rules in the return tuple we return their matched values, which are stored in the TokenChars variable. But instead of returning characters as a token value we transform them to the values we need. I.e. numbers are converted to integer and variable names are converted to atoms. And for the rest of the tokens, which are operators and parenthesis we are not interested in their values, thus we return only corresponding atoms. The only thing that is worth mentioning, that in order to feed tokenizer output to <code>yecc</code> generated parser, you must return a tuple of at least 2 elements, where first element is token category, second one is the line number where it was found and the third, which is optional, is the value of the token.</p>
+
+<p>Now you can convert your <code>.xrl</code> definition file to the Erlang module and test the lexer.</p>
+
+<pre><code class="language-erlang">1&gt; leex:file(&quot;calculator_lexer.xrl&quot;).
+{ok,&quot;./calculator_lexer.erl&quot;}
+2&gt; c(calculator_lexer).
+{ok,calculator_lexer}
+3&gt; calculator_lexer:string(&quot;1 + 2 * abc&quot;).
+{ok,[{number,1,1},
+     {plus,1},
+     {number,1,2},
+     {mult,1},
+     {var,1,abc}],
+    1}
+</code></pre>
+
+<h4 id="the-parser">The parser</h4>
+
+<p>After building the lexer and getting a list of tokens from an expression string, it&rsquo;s time to move on and create a parser. Parser will arrange tokens obtained from the lexer to the expression syntax tree. Later we will process the tree and will get our expression evaluated.</p>
+
+<p>Erlang parser grammar is stored in the file with <code>*.yrl</code> extension <code>calculator_parser.yrl</code>:</p>
+
+<pre><code class="language-erlang">Nonterminals
+expression term factor.
+
+Terminals
+number plus minus mult divd lparen rparen var.
+
+Rootsymbol expression.
+
+expression -&gt; term: '$1'.
+expression -&gt; expression plus term: { add, '$1', '$3' }.
+expression -&gt; expression minus term: { subtr, '$1', '$3' }.
+
+term -&gt; term mult factor: { mult, '$1', '$3' }.
+term -&gt; term divd factor: { divd, '$1', '$3' }.
+term -&gt; factor: '$1'.
+
+factor -&gt; number: { number, unwrap('$1') }.
+factor -&gt; var: { var, unwrap('$1') }.
+factor -&gt; lparen expression rparen: '$2'.
+
+Erlang code.
+
+unwrap({_,_,V}) -&gt; V.
+</code></pre>
+
+<p>The <code>yecc</code> definitions file consists of the following sections:</p>
+
+<ul>
+<li>Header - optional, and it&rsquo;s&hellip; a header</li>
+<li>Terminals - elements that are not divided to other elements, these are the tokens we got from the lexer</li>
+<li>Nonterminals - parts of your grammar that can be recursively divided to other either non-terminals or terminals</li>
+<li>Rootsymbol - starting point of your grammar, like start_rule for <code>ANTLR</code></li>
+<li>Rules - your grammar rules, telling the parser how to build a syntax tree from the tokens consumed</li>
+<li>Erlang code. - helper methods</li>
+</ul>
+
+<p>Rules have the following syntax</p>
+
+<pre><code class="language-erlang">left_part -&gt; right_part : Erlang code
+</code></pre>
+
+<p>where <code>left_part</code> is a nonterminal expression, <code>right_part</code> is combination of nonterminal or terminal elemnts and <code>code</code> is the code associated with the rule.</p>
+
+<p>For instance following rules for <code>factor</code> nonterminal tell parser, that when we see  the <code>{number, _, &lt;value&gt;}</code> or <code>{var, _, &lt;value&gt;}</code> token, it will be parsed either to the <code>{number, &lt;value&gt;}</code> node or the <code>{var, &lt;value&gt;}</code> correspondingly. We can define multiple rules for the same nonterminal, so this element can match any of rule defined.</p>
+
+<pre><code class="language-erlang">factor -&gt; number: { number, unwrap('$1') }.
+factor -&gt; var: { var, unwrap('$1') }.
+</code></pre>
+
+<p>The <code>'$1'</code>, <code>'$2'</code>&hellip;etc variables represents the contents of the corresponding part of the right-hand side of the rule. In the example above <code>'$1'</code> is the consumed <code>{number, _, &lt;value&gt;}</code> token. We don&rsquo;t need a line number in our expression tree, thus we convert lexer token to the one suitable for us. <code>unwrap/1</code> helper methods extracts the value from a terminal token.</p>
+
+<p>Let&rsquo;s test our parser:</p>
+
+<pre><code class="language-erlang">1&gt; yecc:file(&quot;calculator_parser.yrl&quot;).
+{ok,&quot;calculator_parser.erl&quot;}
+2&gt; c(calculator_parser).
+{ok,calculator_parser}
+3&gt; {ok, Tokens, _} = calculator_lexer:string(&quot;1 + 2 * a&quot;).
+{ok,[{number,1,1},{plus,1},{number,1,2},{mult,1},{var,1,a}],
+    1}
+4&gt; calculator_parser:parse(Tokens).
+{ok,{add,
+        {number,1},
+        {mult,
+            {number,2},
+            {var,a}
+        }
+    }
+}
+</code></pre>
+
+<h4 id="evaluation">Evaluation</h4>
+
+<p>Now we have syntax tree and we can use it to evaluate the expression. There are at least 2 ways to do it: by tree traversal and by transforming it into an intermediate language (yes because we can) and running a program to evaluate not the tree, but the intermediate language.</p>
+
+<p>Tree traversal is pretty straightforward, when we see a leaf of the tree, which is either a number or a variable, we return the number or fetch the variable from the passed context and return the fetched value.</p>
+
+<pre><code class="language-erlang">eval(_Env, {number, N}) -&gt; 
+    N;
+
+eval(Env, {var, Name}) -&gt;
+    lookup(Name, Env).
+</code></pre>
+
+<p>When a node is met, and it&rsquo;s obviously an operator, we evaluate its left and right parts and apply the operator to the results. I omitted some functions for brevity, but the full source code is on github.</p>
+
+<pre><code class="language-erlang">eval(Env, {add, L, R}) -&gt;
+    eval(Env, L) + eval(Env, R);
+
+eval(Env, {subtr, L, R}) -&gt;
+    eval(Env, L) - eval(Env, R);
+</code></pre>
+
+<p>And the result of execution is</p>
+
+<pre><code class="language-erlang">1&gt; ecalculator:calculate({}, &quot;1 + 2 * 3&quot;).
+7
+</code></pre>
+
+<p>Part with transforming the tree into intermediate language and feeding it to the state machine is a bit trickier. First let&rsquo;s define a language. We have an empty stack and our tree. The simplest case when there is a single node tree <code>{number, &lt;N&gt;}</code>. Then all we need to do is to push the number to the stack and it&rsquo;s our result, so <code>number</code> is transformed to the <code>push</code> instruction. When the node is <code>{var, &lt;Name&gt;}</code>, we should get its value from the context and put it to the stack.  Let&rsquo;s move to more complicated scenarios</p>
+
+<pre><code class="language-erlang">{add, 
+    {number, 1},
+    {number, 2}
+}
+</code></pre>
+
+<p>For this tree our intermediate language will have following command sequence <code>[{push, 1}, {push 2}, {add}]</code> so during its evaluation we will have 2 values on stack when <code>{add}</code> operator appears. Generalizing it</p>
+
+<pre><code class="language-erlang">compile({Operation, L, R}) -&gt;
+    compile(L) ++ compile(R) ++ [{Operation}].
+</code></pre>
+
+<p>The whole language for the following expression will look as:</p>
+
+<pre><code class="language-erlang">1&gt; Tree = ecalculator:parse(&quot;1 + 2 * 3&quot;).
+{add,{number,1},{mult,{number,2},{number,3}}}
+2&gt; ecalculator:compile(Tree).
+[{push,1},{push,2},{push,3},{mult},{add}]
+</code></pre>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p>In this post we&rsquo;ve built a simple lexer and a parser for the small arithmetic expression grammar. Though parsing a real language like Erlang is a way harder comparing to the examples we used in the post, but knowledge how and where to start is still valuable. Using the tools from the post you can easily move from trivial grammar to more complex one.</p>
+
+    </section>
+
+    <hr>
+
+    <footer class="post-footer">
+        <section class="f-1">
+            
+            <section class="author">
+                <p>Words by Oleg Rakitskiy</p>
+            </section>
+            
+            
+            <p class="f-post-time"><time datetime="2017-07-18T00:01:06&#43;03:00">July 18, 2017</time></p>
+        </section>
+                        
+        <section class="f-2">
+            <section class="share">
+                <span>Share:
+                <a class="icon-twitter" href="http://twitter.com/share?text=Parsing%20with%20leex%20and%20yecc&url=http%3a%2f%2fraol.io%2fpost%2fparsing-with-leex-and-yecc%2f"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2fparsing-with-leex-and-yecc%2f"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2fparsing-with-leex-and-yecc%2f"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                </span>
+            </section>
+
+            
+        </section>
+                        
+    </footer>
+</article>
+	</div>
+</main>
+    <footer id="site-footer">
+        <div class="container">
+          
+          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
+          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
+    <script type="text/javascript">
+      $(".heading").fitText();
+    </script>
+
+
+</body>
+</html>
