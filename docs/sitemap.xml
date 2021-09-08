@@ -1,170 +1,94 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>http://raol.io/post/parsing-with-leex-and-yecc/</loc>
+    <loc>https://raol.io/post/parsing-with-leex-and-yecc/</loc>
     <lastmod>2017-07-18T00:01:06+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/moving-blog-on-hugo/</loc>
+  </url><url>
+    <loc>https://raol.io/post/</loc>
+    <lastmod>2017-07-18T00:01:06+03:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/</loc>
+    <lastmod>2017-07-18T00:01:06+03:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/moving-blog-on-hugo/</loc>
     <lastmod>2017-05-29T13:47:18+03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/poor-man-language-identification/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/nlp/</loc>
     <lastmod>2015-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/d-ary-heaps/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/nltk/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/poor-man-language-identification/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/programming/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/</loc>
+    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/algorithms/</loc>
     <lastmod>2015-04-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/logging-with-log4net-in-azure/</loc>
+  </url><url>
+    <loc>https://raol.io/post/d-ary-heaps/</loc>
+    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/azure/</loc>
     <lastmod>2015-02-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/foldr-in-c/</loc>
+  </url><url>
+    <loc>https://raol.io/post/logging-with-log4net-in-azure/</loc>
+    <lastmod>2015-02-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/foldr-in-c/</loc>
     <lastmod>2014-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/machine-learning-in-azure-publishing/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/functional/</loc>
+    <lastmod>2014-11-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/machine-learning/</loc>
     <lastmod>2014-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/machine-learning-in-azure/</loc>
+  </url><url>
+    <loc>https://raol.io/post/machine-learning-in-azure-publishing/</loc>
+    <lastmod>2014-08-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/machine-learning-in-azure/</loc>
     <lastmod>2014-07-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/linear-regression-with-scikit-learn/</loc>
+  </url><url>
+    <loc>https://raol.io/post/linear-regression-with-scikit-learn/</loc>
     <lastmod>2014-05-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/python/</loc>
+    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/scikit-learn/</loc>
+    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/machine-learning-with-python-linear-regression-part-2/</loc>
     <lastmod>2014-04-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/markdown-spell-check-in-sublime/</loc>
+  </url><url>
+    <loc>https://raol.io/post/markdown-spell-check-in-sublime/</loc>
     <lastmod>2014-04-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/sublime/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/tags/tutorial/</loc>
+    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://raol.io/post/machine-learning-with-python-linear-regression-part-1/</loc>
     <lastmod>2014-04-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/ascii-art-with-python/</loc>
+  </url><url>
+    <loc>https://raol.io/post/ascii-art-with-python/</loc>
     <lastmod>2014-03-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/blogging-with-github-pages-and-jekyll/</loc>
+  </url><url>
+    <loc>https://raol.io/post/blogging-with-github-pages-and-jekyll/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/algorithms/</loc>
-    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/azure/</loc>
-    <lastmod>2015-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/functional/</loc>
-    <lastmod>2014-11-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/jekyll/</loc>
+  </url><url>
+    <loc>https://raol.io/tags/jekyll/</loc>
     <lastmod>2014-02-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+  </url><url>
+    <loc>https://raol.io/categories/</loc>
   </url>
-  
-  <url>
-    <loc>http://raol.io/tags/machine-learning/</loc>
-    <lastmod>2014-08-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/nlp/</loc>
-    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/nltk/</loc>
-    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/post/</loc>
-    <lastmod>2017-07-18T00:01:06+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/programming/</loc>
-    <lastmod>2015-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/python/</loc>
-    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/</loc>
-    <lastmod>2017-07-18T00:01:06+03:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/scikit-learn/</loc>
-    <lastmod>2014-05-22T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/sublime/</loc>
-    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/</loc>
-    <lastmod>2015-04-13T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://raol.io/tags/tutorial/</loc>
-    <lastmod>2014-04-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
 </urlset>

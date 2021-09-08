@@ -1,10 +1,12 @@
-baseURL = "http://raol.io/"
+baseURL = "https://raol.io/"
 languageCode = "en-us"
 title = "Raol.io"
 publishDir = "docs"
+theme="ghostwriter"
 
 [params]
-description = "Thoughts on software engineering."
-twitter = "raoldev"
-github = "raol"
+intro = true
+headline = "Thoughts on software engineering."
+twitter = "https://twitter.com/raoldev"
+github = "https://github.com/raol"
 author = "Oleg Rakitskiy"

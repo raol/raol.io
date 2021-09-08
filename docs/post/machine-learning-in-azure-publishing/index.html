@@ -1,189 +1,183 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
-
+<html>
     <head>
-                <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="author" content="Oleg Rakitskiy">
-  
-	
-        <meta property="og:site_name" content="Raol.io">
-        <meta property="og:title" content="Raol.io">
-        <meta property="og:url" content="http://raol.io/post/machine-learning-in-azure-publishing/">
-        <meta property="og:description" content="Thoughts on software engineering.">
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:author" content="Oleg Rakitskiy" />
-        <meta property="og:article:published_time" content="2014-08-04T00:00:00Z" />
-    
-        <meta name="generator" content="Hugo 0.21-DEV" />
-        <title>Machine Learning in Azure. Publishing. &middot; Raol.io</title>
-        <link rel="canonical" href="http://raol.io/" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
-        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
-        <link href="/css/prism.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <title>Machine Learning in Azure. Publishing. &middot; </title>
+        <meta name="description" content="In the previous post I explained how to create new 
+Azure machine learning experiment and how to use linear regression to make predictions.
+The experiment is pretty cool itself as any other one, but there is one minor problem with it.
+It&rsquo;s totally useless. Oh, you certainly can open it up and run all steps manually each time you need
+to predict profit (I&rsquo;m still talking about previous post with synthetic experiment and synthetic dataset)
+based on city population, but, agree, it&rsquo;s not very suitable. It would be nice if you had a way
+to store your trained model and supply data you need to analyze, and get back results.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.88.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://raol.io/dist/site.css">
+        <link rel="stylesheet" href="https://raol.io/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$']]}
             });
-        </script>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        
+        
+        
+
     </head>
+    <body>
+        
 
-<body>
-<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://raol.io/">Raol.io</a>
+                            </h1>
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/raoldev" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/raol" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                    </div>
 
-    <header id="site-header">
-        <div class="container">
-            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
-            <p class="blog-description">Thoughts on software engineering.</p>
-            
-                <li class="navigation_item">
-                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
-                </li>
-            
-            
-            
-                <li class="navigation_item">
-                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
-                </li>
-             
-        </div>
-    </header>
-<main class="content" role="main">
-	<div class="container">
-		<article class="post">
-	<header class="post-header">
-        <h3 class="p-post-title">Machine Learning in Azure. Publishing.</h3>
-    </header>
+                    <ul class="site-nav">
+                        
 
-    <section class="post-content">
-        <p>In the <a href="/2014/07/21/machine-learning-in-azure/">previous</a> post I explained how to create new
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Machine Learning in Azure. Publishing.</h1>
+    
+    <p class="post-date post-line">
+        <span>Published <time datetime="2014-08-04" itemprop="datePublished">Mon, Aug 4, 2014</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>In the <a href="/2014/07/21/machine-learning-in-azure/">previous</a> post I explained how to create new 
 Azure machine learning experiment and how to use linear regression to make predictions.
 The experiment is pretty cool itself as any other one, but there is one minor problem with it.
 It&rsquo;s totally useless. Oh, you certainly can open it up and run all steps manually each time you need
 to predict profit (I&rsquo;m still talking about previous post with synthetic experiment and synthetic dataset)
 based on city population, but, agree, it&rsquo;s not very suitable. It would be nice if you had a way
 to store your trained model and supply data you need to analyze, and get back results.</p>
-
-<p></p>
-
-<p>Fortunately guys from Microsoft foresaw, that someone might want to use their ML results
-at the website, to predict, let&rsquo;s say, what pages with kittens might be interesting to see for
-certain users. Something like Twitter or Facebook suggestions. So you can run the experiment, save
+<p>Fortunately guys from Microsoft foresaw, that someone might want to use their ML results 
+at the website, to predict, let&rsquo;s say, what pages with kittens might be interesting to see for 
+certain users. Something like Twitter or Facebook suggestions. So you can run the experiment, save 
 the model you designed and publish it via Web Service. Let&rsquo;s do it.</p>
-
 <p>I&rsquo;m publishing old experiment from the previous post with slight modifications added.
 This is not a puzzler game, so I&rsquo;ll explain what was changed and how I did it.</p>
-
-<p><img src="/assets/images/azure_ml_2/changed_exp.png" alt="changed-experiment" /></p>
-
+<p><img src="/assets/images/azure_ml_2/changed_exp.png" alt="changed-experiment"></p>
 <p>First of all I added new <em>Project Columns</em> task and chosen only population column to be its output
 or input of the <em>Score Model</em> task. In the previous version of the experiment there was no this task
 so <em>Score Model</em> accepted two columns from our training set, both Population and Profit. It led to incorrect
 Web Service contract. Since there is only one feature column we have to tell our model which one is.</p>
-
 <p>Next, you&rsquo;ve probably noticed blue and green circles around input and output ports of the <em>Score Model</em> task.
 I&rsquo;ll talk about them later.</p>
-
 <p>Next thing you need to do is to save your trained mode. So, run experiment again. After all steps are completed
 right click output port of the <em>Train model</em> task and in the drop down menu choose <em>Save as Trained Model</em> option.
 Now your model (or in other words, linear regression function coefficients) is saved and you&rsquo;re almost ready to
 publish your experiment. Only one thing is left.</p>
-
 <p>You need to specify what ports of the experiment are input and what ones are output.
-So right click input port of the <em>Score Model</em> task and choose <em>Set as Publish Input</em>. Do the same
+So right click input port of the <em>Score Model</em> task and choose <em>Set as Publish Input</em>. Do the same 
 for the output port, but this time choose <em>Set as Publish Output</em> option.</p>
-
 <p>Now in the large bottom menu <em>Publish Web Service</em> item should be enabled. If it&rsquo;s not, just run experiment
 once again and it will be enabled. At least for me it worked fine.</p>
-
-<p>Just click the button and Web Service will be created automatically. After it&rsquo;s published you will be
+<p>Just click the button and Web Service will be created automatically. After it&rsquo;s published you will be 
 redirected to the Web Service page which looks like below. I removed API key.</p>
-
-<p><img src="/assets/images/azure_ml_2/web_service_configuration.png" alt="changed-experiment" /></p>
-
+<p><img src="/assets/images/azure_ml_2/web_service_configuration.png" alt="changed-experiment"></p>
 <p>So it&rsquo;s time to consume the web service.</p>
-
 <p>The simplest way is to create console application. So create it, then in the <em>Stagin Services</em> list click
 the row named as your web service and with type <em>Request/Response</em>. I&rsquo;m writing in normal case. :) Don&rsquo;t know
 who told Microsoft designers that upper case IS BRILLIANT IDEA! The sample code will be opened.</p>
-
-<p>Simply follow instructions on the scree, i.e. install <code>Microsoft.AspNet.WebApi.Client</code> package into
-console application (if you created ASP.NET application as I did, you can ignore package install step)
-and copy-paste the code from the example. Don&rsquo;t forged to change the API key
+<p>Simply follow instructions on the scree, i.e. install <code>Microsoft.AspNet.WebApi.Client</code> package into 
+console application (if you created ASP.NET application as I did, you can ignore package install step) 
+and copy-paste the code from the example. Don&rsquo;t forged to change the API key 
 to the one you have at your web service configuration page. Now you can call your web service, supply data
 to it and get back predicted/classified/clustered results.</p>
-    </section>
+</div>
 
-    <hr>
+        <footer class="post-footer clearfix">
+        <p class="post-tags">
+            <span>Tagged:</span>
+                <a href="/tags/machine-learning/">machine learning</a>, 
+                <a href="/tags/azure/">azure</a>
+        </p>
+    <div class="share">
+    </div>
+</footer>
 
-    <footer class="post-footer">
-        <section class="f-1">
-            
-            <section class="author">
-                <p>Words by Oleg Rakitskiy</p>
-            </section>
-            
-            
-            <p class="f-post-time"><time datetime="2014-08-04T00:00:00Z">August 4, 2014</time></p>
-        </section>
-                        
-        <section class="f-2">
-            <section class="share">
-                <span>Share:
-                <a class="icon-twitter" href="http://twitter.com/share?text=Machine%20Learning%20in%20Azure.%20Publishing.&url=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-in-azure-publishing%2f"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-in-azure-publishing%2f"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-in-azure-publishing%2f"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                </span>
-            </section>
+        
+    </article>
+</div>
 
-            
-            	<span class="f-post-tags"><i class="fa fa-tag"></i>
-            	machine learning, azure
-            	</span>
-            
-        </section>
-                        
-    </footer>
-</article>
-	</div>
-</main>
-    <footer id="site-footer">
-        <div class="container">
-          
-          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
-          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+            </div>
         </div>
-    </footer>
 
-    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
-    <script type="text/javascript">
-      $(".heading").fitText();
-    </script>
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://raol.io/">Raol.io</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <p class="footer-copyright">
+                    <span>&copy; 2017 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
 
-</body>
+        <script src="https://raol.io/js/jquery-1.11.3.min.js"></script>
+        <script src="https://raol.io/js/jquery.fitvids.js"></script>
+        <script src="https://raol.io/js/scripts.js"></script>
+    </body>
 </html>
+

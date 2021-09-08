@@ -1,172 +1,166 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
-
+<html>
     <head>
-                <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="author" content="Oleg Rakitskiy">
-  
-	
-        <meta property="og:site_name" content="Raol.io">
-        <meta property="og:title" content="Raol.io">
-        <meta property="og:url" content="http://raol.io/post/foldr-in-c/">
-        <meta property="og:description" content="Thoughts on software engineering.">
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:author" content="Oleg Rakitskiy" />
-        <meta property="og:article:published_time" content="2014-11-06T00:00:00Z" />
-    
-        <meta name="generator" content="Hugo 0.21-DEV" />
-        <title>Foldr in C# &middot; Raol.io</title>
-        <link rel="canonical" href="http://raol.io/" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
-        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
-        <link href="/css/prism.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <title>Foldr in C# &middot; </title>
+        <meta name="description" content="I&rsquo;m exploring and trying to learn Haskell, or at least get better understanding of
+functional programming. So I thought it would be interesting to tease the brain
+and reimplement some of Haskell parts in my &ldquo;mother tongue&rdquo; C#.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.88.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://raol.io/dist/site.css">
+        <link rel="stylesheet" href="https://raol.io/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$']]}
             });
-        </script>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        
+        
+        
+
     </head>
+    <body>
+        
 
-<body>
-<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://raol.io/">Raol.io</a>
+                            </h1>
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/raoldev" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/raol" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                    </div>
 
-    <header id="site-header">
-        <div class="container">
-            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
-            <p class="blog-description">Thoughts on software engineering.</p>
-            
-                <li class="navigation_item">
-                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
-                </li>
-            
-            
-            
-                <li class="navigation_item">
-                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
-                </li>
-             
-        </div>
-    </header>
-<main class="content" role="main">
-	<div class="container">
-		<article class="post">
-	<header class="post-header">
-        <h3 class="p-post-title">Foldr in C#</h3>
-    </header>
+                    <ul class="site-nav">
+                        
 
-    <section class="post-content">
-        <p>I&rsquo;m exploring and trying to learn Haskell, or at least get better understanding of
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Foldr in C#</h1>
+    
+    <p class="post-date post-line">
+        <span>Published <time datetime="2014-11-06" itemprop="datePublished">Thu, Nov 6, 2014</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>I&rsquo;m exploring and trying to learn Haskell, or at least get better understanding of
 functional programming. So I thought it would be interesting to tease the brain
 and reimplement some of Haskell parts in my &ldquo;mother tongue&rdquo; C#.</p>
-
-<p></p>
-
 <p>So as it is clear from the title, I&rsquo;m going to implement <code>foldr</code> function. In general
 fold is a higher order function that does processing of list and return result. We can
 think of it as of reduce function. <code>foldl</code> differs from <code>foldr</code> only in order of processing
 lists. From left to right or from right to left.</p>
-
 <p>So let&rsquo;s looks at it declaration</p>
-
-<pre><code class="language-haskell">foldr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b
-foldr f z [] = z
-foldr f z (x:xs) = f x (foldr f z xs)
-</code></pre>
-
-<p>So let&rsquo;s reformulate problem in C# terms. So foldr is a method, which accepts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">foldr</span> <span style="color:#f92672">::</span> (a <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> b) <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> [a] <span style="color:#f92672">-&gt;</span> b
+<span style="color:#a6e22e">foldr</span> f z <span style="color:#66d9ef">[]</span> <span style="color:#f92672">=</span> z
+<span style="color:#a6e22e">foldr</span> f z (x<span style="color:#66d9ef">:</span>xs) <span style="color:#f92672">=</span> f x (foldr f z xs)
+</code></pre></div><p>So let&rsquo;s reformulate problem in C# terms. So foldr is a method, which accepts
 some <code>Func&lt;&gt;</code>, parameter to return, when list is empty, and the list itself.
 Written in code it looks like:</p>
-
-<pre><code class="language-csharp">TResult Foldr&lt;TArg, TResult&gt;(Func&lt;TArg, TResult, TResult&gt; func, TResult b, IEnumerable&lt;TArg&gt; en)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">TResult Foldr&lt;TArg, TResult&gt;(Func&lt;TArg, TResult, TResult&gt; func, TResult b, IEnumerable&lt;TArg&gt; en)
 {
-    if(!en.Any())
+    <span style="color:#66d9ef">if</span>(!en.Any())
     {
-        return b;
+        <span style="color:#66d9ef">return</span> b;
     }
     
-    return func(en.First(), Foldr(func, b, en.Skip(1)));
+    <span style="color:#66d9ef">return</span> func(en.First(), Foldr(func, b, en.Skip(<span style="color:#ae81ff">1</span>)));
 }
-</code></pre>
-
-<p>Not as elegant as if we had pattern matching in C# but still looks quite good.
+</code></pre></div><p>Not as elegant as if we had pattern matching in C# but still looks quite good.
 And now we can use our <code>foldr</code> to calculate sum of a list:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">// When list is empty its sum is 0.
+</span><span style="color:#75715e"></span>Foldr((a,b) =&gt; a + b, <span style="color:#ae81ff">0</span>, Enumerable.Range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">10</span>))
+</code></pre></div>
+</div>
 
-<pre><code class="language-csharp">// When list is empty its sum is 0.
-Foldr((a,b) =&gt; a + b, 0, Enumerable.Range(0, 10))
-</code></pre>
-    </section>
+        <footer class="post-footer clearfix">
+        <p class="post-tags">
+            <span>Tagged:</span>
+                <a href="/tags/programming/">programming</a>, 
+                <a href="/tags/functional/">functional</a>
+        </p>
+    <div class="share">
+    </div>
+</footer>
 
-    <hr>
+        
+    </article>
+</div>
 
-    <footer class="post-footer">
-        <section class="f-1">
-            
-            <section class="author">
-                <p>Words by Oleg Rakitskiy</p>
-            </section>
-            
-            
-            <p class="f-post-time"><time datetime="2014-11-06T00:00:00Z">November 6, 2014</time></p>
-        </section>
-                        
-        <section class="f-2">
-            <section class="share">
-                <span>Share:
-                <a class="icon-twitter" href="http://twitter.com/share?text=Foldr%20in%20C%23&url=http%3a%2f%2fraol.io%2fpost%2ffoldr-in-c%2f"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2ffoldr-in-c%2f"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2ffoldr-in-c%2f"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                </span>
-            </section>
-
-            
-            	<span class="f-post-tags"><i class="fa fa-tag"></i>
-            	programming, functional
-            	</span>
-            
-        </section>
-                        
-    </footer>
-</article>
-	</div>
-</main>
-    <footer id="site-footer">
-        <div class="container">
-          
-          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
-          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+            </div>
         </div>
-    </footer>
 
-    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
-    <script type="text/javascript">
-      $(".heading").fitText();
-    </script>
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://raol.io/">Raol.io</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <p class="footer-copyright">
+                    <span>&copy; 2017 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
 
-</body>
+        <script src="https://raol.io/js/jquery-1.11.3.min.js"></script>
+        <script src="https://raol.io/js/jquery.fitvids.js"></script>
+        <script src="https://raol.io/js/scripts.js"></script>
+    </body>
 </html>
+

@@ -1,191 +1,187 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
-
+<html>
     <head>
-                <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="author" content="Oleg Rakitskiy">
-  
-	
-        <meta property="og:site_name" content="Raol.io">
-        <meta property="og:title" content="Raol.io">
-        <meta property="og:url" content="http://raol.io/post/poor-man-language-identification/">
-        <meta property="og:description" content="Thoughts on software engineering.">
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:author" content="Oleg Rakitskiy" />
-        <meta property="og:article:published_time" content="2015-10-19T00:00:00Z" />
-    
-        <meta name="generator" content="Hugo 0.21-DEV" />
-        <title>Poor man language identification. &middot; Raol.io</title>
-        <link rel="canonical" href="http://raol.io/" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
-        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
-        <link href="/css/prism.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <title>Poor man language identification. &middot; </title>
+        <meta name="description" content="Language identification, as it&rsquo;s easy to guess, is the task of identifying the language
+of a document. For instance search engines may store the language of the indexed document
+and provide option such as Search for English results only as Google does. But in order
+to store the language, engine should determine it first.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.88.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://raol.io/dist/site.css">
+        <link rel="stylesheet" href="https://raol.io/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$']]}
             });
-        </script>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        
+        
+        
+
     </head>
+    <body>
+        
 
-<body>
-<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://raol.io/">Raol.io</a>
+                            </h1>
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/raoldev" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/raol" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                    </div>
 
-    <header id="site-header">
-        <div class="container">
-            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
-            <p class="blog-description">Thoughts on software engineering.</p>
-            
-                <li class="navigation_item">
-                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
-                </li>
-            
-            
-            
-                <li class="navigation_item">
-                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
-                </li>
-             
-        </div>
-    </header>
-<main class="content" role="main">
-	<div class="container">
-		<article class="post">
-	<header class="post-header">
-        <h3 class="p-post-title">Poor man language identification.</h3>
-    </header>
+                    <ul class="site-nav">
+                        
 
-    <section class="post-content">
-        <p>Language identification, as it&rsquo;s easy to guess, is the task of identifying the language
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Poor man language identification.</h1>
+    
+    <p class="post-date post-line">
+        <span>Published <time datetime="2015-10-19" itemprop="datePublished">Mon, Oct 19, 2015</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>Language identification, as it&rsquo;s easy to guess, is the task of identifying the language
 of a document. For instance search engines may store the language of the indexed document
 and provide option such as <em>Search for English results only</em> as Google does. But in order
 to store the language, engine should determine it first.</p>
-
-<p></p>
-
 <p>There are bunch of methods for language detection, but the easiest one is based on stopwords.
 I.e. the most common words in a language that are usually filtered out before document processing.</p>
-
 <p>So all we need to do is to tokenize our document (split by words), build set of words and find
 intersection with the stopwords collection for particular language. The biggest intersection wins.</p>
-
 <p>Here <a href="http://www.nltk.org/">NLTK</a> package will be useful. Let&rsquo;s examine it first.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">nltk<span style="color:#f92672">.</span>corpus<span style="color:#f92672">.</span>stopwords<span style="color:#f92672">.</span>fileids()
 
-<pre><code class="language-python">nltk.corpus.stopwords.fileids()
+<span style="color:#75715e">#[u&#39;danish&#39;, u&#39;dutch&#39;, u&#39;english&#39;, u&#39;finnish&#39;, u&#39;french&#39;, u&#39;german&#39;, u&#39;hungarian&#39;</span>
+<span style="color:#75715e">#, u&#39;italian&#39;, u&#39;norwegian&#39;, u&#39;portuguese&#39;, u&#39;russian&#39;, u&#39;spanish&#39;, u&#39;swedish&#39;, </span>
+<span style="color:#75715e">#u&#39;turkish&#39;]</span>
 
-#[u'danish', u'dutch', u'english', u'finnish', u'french', u'german', u'hungarian'
-#, u'italian', u'norwegian', u'portuguese', u'russian', u'spanish', u'swedish', 
-#u'turkish']
+nltk<span style="color:#f92672">.</span>corpus<span style="color:#f92672">.</span>stopwords<span style="color:#f92672">.</span>words(<span style="color:#e6db74">&#39;english&#39;</span>)
 
-nltk.corpus.stopwords.words('english')
+<span style="color:#75715e">#[u&#39;i&#39;, u&#39;me&#39;, u&#39;my&#39;, u&#39;myself&#39;, u&#39;we&#39;, u&#39;our&#39;, u&#39;ours&#39;, u&#39;ourselves&#39;, u&#39;you&#39; ...]</span>
 
-#[u'i', u'me', u'my', u'myself', u'we', u'our', u'ours', u'ourselves', u'you' ...]
-
-</code></pre>
-
-<p>Below we iterate over the languages and compare words from the document
+</code></pre></div><p>Below we iterate over the languages and compare words from the document
 with stopwords defined for the language.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#f92672">import</span> nltk
 
-<pre><code class="language-python">
-import nltk
+phrase <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">Here at Google Research we have been using word n-gram models for a variety of R&amp;D projects, 
+</span><span style="color:#e6db74">such as statistical machine translation, speech recognition, spelling correction, entity 
+</span><span style="color:#e6db74">detection, information extraction, and others. While such models have usually been 
+</span><span style="color:#e6db74">estimated from training corpora containing at most a few billion words, we have been 
+</span><span style="color:#e6db74">harnessing the vast power of Google&#39;s datacenters and distributed processing infrastructure 
+</span><span style="color:#e6db74">to process larger and larger training corpora. We found that there&#39;s no data like more data, 
+</span><span style="color:#e6db74">and scaled up the size of our data by one order of magnitude, and then another, and then one 
+</span><span style="color:#e6db74">more - resulting in a training corpus of one trillion words from public Web pages.
+</span><span style="color:#e6db74">&#39;&#39;&#39;</span>
 
-phrase = '''
-Here at Google Research we have been using word n-gram models for a variety of R&amp;D projects, 
-such as statistical machine translation, speech recognition, spelling correction, entity 
-detection, information extraction, and others. While such models have usually been 
-estimated from training corpora containing at most a few billion words, we have been 
-harnessing the vast power of Google's datacenters and distributed processing infrastructure 
-to process larger and larger training corpora. We found that there's no data like more data, 
-and scaled up the size of our data by one order of magnitude, and then another, and then one 
-more - resulting in a training corpus of one trillion words from public Web pages.
-'''
+words <span style="color:#f92672">=</span> set([v <span style="color:#66d9ef">for</span> v <span style="color:#f92672">in</span> nltk<span style="color:#f92672">.</span>wordpunct_tokenize(phrase)])
+langs <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> nltk<span style="color:#f92672">.</span>corpus<span style="color:#f92672">.</span>stopwords<span style="color:#f92672">.</span>fileids():
+    lsw <span style="color:#f92672">=</span> set(nltk<span style="color:#f92672">.</span>corpus<span style="color:#f92672">.</span>stopwords<span style="color:#f92672">.</span>words(f))
+    langs[f] <span style="color:#f92672">=</span> len(lsw<span style="color:#f92672">.</span>intersection(words))
 
-words = set([v for v in nltk.wordpunct_tokenize(phrase)])
-langs = {}
-for f in nltk.corpus.stopwords.fileids():
-    lsw = set(nltk.corpus.stopwords.words(f))
-    langs[f] = len(lsw.intersection(words))
+print <span style="color:#e6db74">&#39;Language of the document is:&#39;</span>, max(langs, key<span style="color:#f92672">=</span>langs<span style="color:#f92672">.</span>get)
 
-print 'Language of the document is:', max(langs, key=langs.get)
-
-</code></pre>
-
-<p>Though this method is clear and relatively fast, it won&rsquo;t work well on short documents
+</code></pre></div><p>Though this method is clear and relatively fast, it won&rsquo;t work well on short documents
 like tweets, simply because there are not as many stopwords, and often they are skipped
 or replaced with abbreviations like <code>you -&gt; u</code>. For such cases N-gram method will be the
 best choice, and I&rsquo;ll try to write about it next time.</p>
-    </section>
+</div>
 
-    <hr>
+        <footer class="post-footer clearfix">
+        <p class="post-tags">
+            <span>Tagged:</span>
+                <a href="/tags/programming/">programming</a>, 
+                <a href="/tags/nlp/">nlp</a>, 
+                <a href="/tags/nltk/">nltk</a>
+        </p>
+    <div class="share">
+    </div>
+</footer>
 
-    <footer class="post-footer">
-        <section class="f-1">
-            
-            <section class="author">
-                <p>Words by Oleg Rakitskiy</p>
-            </section>
-            
-            
-            <p class="f-post-time"><time datetime="2015-10-19T00:00:00Z">October 19, 2015</time></p>
-        </section>
-                        
-        <section class="f-2">
-            <section class="share">
-                <span>Share:
-                <a class="icon-twitter" href="http://twitter.com/share?text=Poor%20man%20language%20identification.&url=http%3a%2f%2fraol.io%2fpost%2fpoor-man-language-identification%2f"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2fpoor-man-language-identification%2f"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2fpoor-man-language-identification%2f"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                </span>
-            </section>
+        
+    </article>
+</div>
 
-            
-            	<span class="f-post-tags"><i class="fa fa-tag"></i>
-            	programming, nlp, nltk
-            	</span>
-            
-        </section>
-                        
-    </footer>
-</article>
-	</div>
-</main>
-    <footer id="site-footer">
-        <div class="container">
-          
-          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
-          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+            </div>
         </div>
-    </footer>
 
-    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
-    <script type="text/javascript">
-      $(".heading").fitText();
-    </script>
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://raol.io/">Raol.io</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <p class="footer-copyright">
+                    <span>&copy; 2017 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
 
-</body>
+        <script src="https://raol.io/js/jquery-1.11.3.min.js"></script>
+        <script src="https://raol.io/js/jquery.fitvids.js"></script>
+        <script src="https://raol.io/js/scripts.js"></script>
+    </body>
 </html>
+

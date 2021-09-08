@@ -1,167 +1,169 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
-
+<html>
     <head>
-                <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="author" content="Oleg Rakitskiy">
-  
-	
-        <meta property="og:site_name" content="Raol.io">
-        <meta property="og:title" content="Raol.io">
-        <meta property="og:url" content="http://raol.io/post/logging-with-log4net-in-azure/">
-        <meta property="og:description" content="Thoughts on software engineering.">
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:author" content="Oleg Rakitskiy" />
-        <meta property="og:article:published_time" content="2015-02-17T00:00:00Z" />
-    
-        <meta name="generator" content="Hugo 0.21-DEV" />
-        <title>Logging with log4net in Azure &middot; Raol.io</title>
-        <link rel="canonical" href="http://raol.io/" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
-        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
-        <link href="/css/prism.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <title>Logging with log4net in Azure &middot; </title>
+        <meta name="description" content="Though you can configure basic logging for Azure using built in
+diagnostic tools
+sometimes it&rsquo;s necessary to have more control on logging. So it might be a good idea
+to use log4net on top of the azure diagnostics and configure it to fit all your needs.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.88.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://raol.io/dist/site.css">
+        <link rel="stylesheet" href="https://raol.io/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$']]}
             });
-        </script>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        
+        
+        
+
     </head>
+    <body>
+        
 
-<body>
-<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://raol.io/">Raol.io</a>
+                            </h1>
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/raoldev" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/raol" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                    </div>
 
-    <header id="site-header">
-        <div class="container">
-            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
-            <p class="blog-description">Thoughts on software engineering.</p>
-            
-                <li class="navigation_item">
-                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
-                </li>
-            
-            
-            
-                <li class="navigation_item">
-                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
-                </li>
-             
-        </div>
-    </header>
-<main class="content" role="main">
-	<div class="container">
-		<article class="post">
-	<header class="post-header">
-        <h3 class="p-post-title">Logging with log4net in Azure</h3>
-    </header>
+                    <ul class="site-nav">
+                        
 
-    <section class="post-content">
-        <p>Though you can configure basic logging for Azure using built in
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Logging with log4net in Azure</h1>
+    
+    <p class="post-date post-line">
+        <span>Published <time datetime="2015-02-17" itemprop="datePublished">Tue, Feb 17, 2015</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>Though you can configure basic logging for Azure using built in
 <a href="http://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-diagnostics/">diagnostic tools</a>
 sometimes it&rsquo;s necessary to have more control on logging. So it might be a good idea
 to use log4net on top of the azure diagnostics and configure it to fit all your needs.</p>
-
-<p></p>
-
 <p>In my case we already had the application with configured log4net and needed to adapt it
 to the cloud environment. But if you&rsquo;re starting developing from scratch, you might
 want to configure some advanced logging scenarios, which are not possible for now
 in default azure diagnostics.</p>
-
 <p>So assuming you have sample cloud service and two roles configured - one worker and
 one web role, lets first add log4net configuration to the role settings. We want
 our logs by default are placed to the same place as azure diagnostics log, so we have
 to use <code>TraceAppender</code>. Sample configuration looks as below</p>
-
-<pre><code class="language-xml">&lt;log4net&gt;   
-    &lt;appender name=&quot;TraceAppender&quot; type=&quot;log4net.Appender.TraceAppender&quot;&gt;
-        &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;
-            &lt;conversionPattern value=&quot;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&quot; /&gt;
-        &lt;/layout&gt;
-    &lt;/appender&gt;
-    &lt;root&gt;
-        &lt;level value=&quot;ALL&quot; /&gt;
-        &lt;appender-ref ref=&quot;TraceAppender&quot; /&gt;
-    &lt;/root&gt;
-&lt;/log4net&gt;
-</code></pre>
-
-<p>The only minor problem with storing configuration in role settings is that it&rsquo;s not
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;log4net&gt;</span>   
+    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TraceAppender&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Appender.TraceAppender&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Layout.PatternLayout&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;conversionPattern</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/layout&gt;</span>
+    <span style="color:#f92672">&lt;/appender&gt;</span>
+    <span style="color:#f92672">&lt;root&gt;</span>
+        <span style="color:#f92672">&lt;level</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;ALL&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;TraceAppender&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/root&gt;</span>
+<span style="color:#f92672">&lt;/log4net&gt;</span>
+</code></pre></div><p>The only minor problem with storing configuration in role settings is that it&rsquo;s not
 possible to have multiline value there. So we have to have all configuration in a
 single line. It&rsquo;s not a big deal as for me. Line breaks are easy to replace.</p>
-
 <p>So it&rsquo;s time to use this configuration in our roles. For worker role we place
 logging initialization to <code>WorkerRole.OnStart</code> method. But for web roles approach
 is a little tricky. Since our web application (I&rsquo;m talking about sample MVC project)
 is running is ASP.NET process, which is completely unrelated to Azure roles, we
 have to initialize logging there in the <code>Global.asax.Application_Start()</code> method.</p>
-
-<pre><code class="language-csharp">if (RoleEnvironment.IsAvailable)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">if</span> (RoleEnvironment.IsAvailable)
 {
-    try
+    <span style="color:#66d9ef">try</span>
     {
-        var log4netConfig = CloudConfigurationManager.GetSetting(&quot;log4net&quot;);
-        var xmlDocument = new XmlDocument();
+        <span style="color:#66d9ef">var</span> log4netConfig = CloudConfigurationManager.GetSetting(<span style="color:#e6db74">&#34;log4net&#34;</span>);
+        <span style="color:#66d9ef">var</span> xmlDocument = <span style="color:#66d9ef">new</span> XmlDocument();
         xmlDocument.LoadXml(log4netConfig);
 
         XmlConfigurator.Configure(xmlDocument.DocumentElement);
     }
-    catch (Exception ex)
+    <span style="color:#66d9ef">catch</span> (Exception ex)
     {
-        Trace.TraceError(&quot;Error configuring log4net. Details {0}&quot;, ex);
+        Trace.TraceError(<span style="color:#e6db74">&#34;Error configuring log4net. Details {0}&#34;</span>, ex);
     }
     
 }
-</code></pre>
-
-<p>If for some reason log4net configuration fails, we just logging error using standard
+</code></pre></div><p>If for some reason log4net configuration fails, we just logging error using standard
 Azure diagnostics and it will be logged to the place we expect to have all our log messages.
 So we won&rsquo;t miss that configuration error.</p>
-
 <p>Handling changes. You might be familiar with the <code>RoleEnvironment.Changed</code> event we will
 use to observe and react on configuration changes. If no, please read info
 <a href="https://msdn.microsoft.com/en-us/library/microsoft.windowsazure.serviceruntime.roleenvironment.changed.aspx">here</a>.
 And here is the event handler.</p>
-
-<pre><code class="language-csharp">private void RoleEnvironmentOnChanged(object sender, RoleEnvironmentChangedEventArgs roleEnvironmentChangedEventArgs)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> RoleEnvironmentOnChanged(<span style="color:#66d9ef">object</span> sender, RoleEnvironmentChangedEventArgs roleEnvironmentChangedEventArgs)
 {
-    var log4netChange = roleEnvironmentChangedEventArgs.Changes
+    <span style="color:#66d9ef">var</span> log4netChange = roleEnvironmentChangedEventArgs.Changes
         .OfType&lt;RoleEnvironmentConfigurationSettingChange&gt;()
-        .FirstOrDefault(c =&gt; string.Equals(c.ConfigurationSettingName, &quot;log4net&quot;, StringComparison.OrdinalIgnoreCase));
-    if (log4netChange == null)
+        .FirstOrDefault(c =&gt; <span style="color:#66d9ef">string</span>.Equals(c.ConfigurationSettingName, <span style="color:#e6db74">&#34;log4net&#34;</span>, StringComparison.OrdinalIgnoreCase));
+    <span style="color:#66d9ef">if</span> (log4netChange == <span style="color:#66d9ef">null</span>)
     {
-        return;
+        <span style="color:#66d9ef">return</span>;
     }
 
     ConfigureLogging();
 }
-</code></pre>
-
-<p>At the moment our code is executed at event handler we already have new configuration
+</code></pre></div><p>At the moment our code is executed at event handler we already have new configuration
 values applied, and all we have to do is to reconfigure log4net.</p>
-
 <p>If you deploy that sample app to the cloud, you should see all your log messages
 in the <code>WADLogsTable</code> table of the table storage created for the cloud service.</p>
-
 <p>Since log4net is in charge for writing messages and dealing with the logging level,
 to see information/debug/warning messages you have to configure <code>Log Level</code> to <code>All</code> in
 the role Diagnostis Configuration.</p>
-
 <p>But you might wonder why we need all this stuff at all, if we do no more than
 just redirecting messages from log4net to standard trace appender. And here is the
 answer. Certainly it&rsquo;s cool to have as detailed logs as possible, but <code>level=ALL</code> is
@@ -171,92 +173,73 @@ of info or debug messages were logged before the error/fatal happened. Using log
 to support such scenario. All you need to do is to use <code>BufferingForwardingAppender</code>. It aggregates
 N last messages in the buffer and when threshold is reached all of them are flushed to the
 configured appender, <code>TraceAppender</code> in our case.</p>
-
 <p>In sample configuration below 10 last messages is aggregated and if error is happened,
 all of them are flushed to the configured <code>TraceAppender</code> which in turn writes messages
 to the Azure table storage.</p>
-
-<pre><code class="language-xml">&lt;log4net&gt;
-    &lt;appender name=&quot;ErrorAppender&quot; type=&quot;log4net.Appender.BufferingForwardingAppender&quot;&gt;
-        &lt;bufferSize value=&quot;10&quot; /&gt;
-        &lt;lossy value=&quot;true&quot; /&gt;
-        &lt;evaluator type=&quot;log4net.Core.LevelEvaluator&quot;&gt;
-            &lt;threshold value=&quot;ERROR&quot; /&gt;
-        &lt;/evaluator&gt;
-        &lt;appender-ref ref=&quot;TraceAppender&quot; /&gt;
-    &lt;/appender&gt;
-    &lt;appender name=&quot;TraceAppender&quot; type=&quot;log4net.Appender.TraceAppender&quot;&gt;
-        &lt;layout type=&quot;log4net.Layout.PatternLayout&quot;&gt;
-            &lt;conversionPattern value=&quot;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&quot; /&gt;
-        &lt;/layout&gt;
-    &lt;/appender&gt;
-    &lt;root&gt;
-        &lt;level value=&quot;ALL&quot; /&gt;
-        &lt;appender-ref ref=&quot;ErrorAppender&quot; /&gt;
-    &lt;/root&gt;
-&lt;/log4net&gt;
-</code></pre>
-
-<p>You can find sample code for the article <a href="https://github.com/raol/articles-code/tree/master/azure-logging">here</a></p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;log4net&gt;</span>
+    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;ErrorAppender&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Appender.BufferingForwardingAppender&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;bufferSize</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;10&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;lossy</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;evaluator</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Core.LevelEvaluator&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;threshold</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;ERROR&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/evaluator&gt;</span>
+        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;TraceAppender&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/appender&gt;</span>
+    <span style="color:#f92672">&lt;appender</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;TraceAppender&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Appender.TraceAppender&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;layout</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;log4net.Layout.PatternLayout&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;conversionPattern</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/layout&gt;</span>
+    <span style="color:#f92672">&lt;/appender&gt;</span>
+    <span style="color:#f92672">&lt;root&gt;</span>
+        <span style="color:#f92672">&lt;level</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;ALL&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;appender-ref</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;ErrorAppender&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/root&gt;</span>
+<span style="color:#f92672">&lt;/log4net&gt;</span>
+</code></pre></div><p>You can find sample code for the article <a href="https://github.com/raol/articles-code/tree/master/azure-logging">here</a></p>
 <p>And that&rsquo;s it.</p>
-    </section>
+</div>
 
-    <hr>
+        <footer class="post-footer clearfix">
+        <p class="post-tags">
+            <span>Tagged:</span>
+                <a href="/tags/programming/">programming</a>, 
+                <a href="/tags/azure/">azure</a>
+        </p>
+    <div class="share">
+    </div>
+</footer>
 
-    <footer class="post-footer">
-        <section class="f-1">
-            
-            <section class="author">
-                <p>Words by Oleg Rakitskiy</p>
-            </section>
-            
-            
-            <p class="f-post-time"><time datetime="2015-02-17T00:00:00Z">February 17, 2015</time></p>
-        </section>
-                        
-        <section class="f-2">
-            <section class="share">
-                <span>Share:
-                <a class="icon-twitter" href="http://twitter.com/share?text=Logging%20with%20log4net%20in%20Azure&url=http%3a%2f%2fraol.io%2fpost%2flogging-with-log4net-in-azure%2f"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2flogging-with-log4net-in-azure%2f"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2flogging-with-log4net-in-azure%2f"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                </span>
-            </section>
+        
+    </article>
+</div>
 
-            
-            	<span class="f-post-tags"><i class="fa fa-tag"></i>
-            	programming, azure
-            	</span>
-            
-        </section>
-                        
-    </footer>
-</article>
-	</div>
-</main>
-    <footer id="site-footer">
-        <div class="container">
-          
-          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
-          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+            </div>
         </div>
-    </footer>
 
-    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
-    <script type="text/javascript">
-      $(".heading").fitText();
-    </script>
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://raol.io/">Raol.io</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <p class="footer-copyright">
+                    <span>&copy; 2017 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
 
-</body>
+        <script src="https://raol.io/js/jquery-1.11.3.min.js"></script>
+        <script src="https://raol.io/js/jquery.fitvids.js"></script>
+        <script src="https://raol.io/js/scripts.js"></script>
+    </body>
 </html>
+

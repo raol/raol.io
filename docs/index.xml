@@ -1,193 +1,164 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Raol.io</title>
-    <link>http://raol.io/</link>
+    <link>https://raol.io/</link>
     <description>Recent content on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jul 2017 00:01:06 +0300</lastBuildDate>
-    
-	<atom:link href="http://raol.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 18 Jul 2017 00:01:06 +0300</lastBuildDate><atom:link href="https://raol.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Parsing with leex and yecc</title>
-      <link>http://raol.io/post/parsing-with-leex-and-yecc/</link>
+      <link>https://raol.io/post/parsing-with-leex-and-yecc/</link>
       <pubDate>Tue, 18 Jul 2017 00:01:06 +0300</pubDate>
       
-      <guid>http://raol.io/post/parsing-with-leex-and-yecc/</guid>
+      <guid>https://raol.io/post/parsing-with-leex-and-yecc/</guid>
       <description>This post is mostly inspired by the Erlang master class taught by University of Kent. Though with some modifications. The master class is about building a simple calculator program in Erlang, with little information on parsing, which is done by hands there. However there are tools leex and yecc in Erlang designed to handle parsing part, and they are far less documented than their counterparts. So this blog post will, I hope, shrink the documentation gap.</description>
     </item>
     
     <item>
       <title>Moving the blog on hugo.</title>
-      <link>http://raol.io/post/moving-blog-on-hugo/</link>
+      <link>https://raol.io/post/moving-blog-on-hugo/</link>
       <pubDate>Mon, 29 May 2017 13:47:18 +0300</pubDate>
       
-      <guid>http://raol.io/post/moving-blog-on-hugo/</guid>
-      <description>&lt;p&gt;It&amp;rsquo;s been, unfortunately usual, long pause in my writing mainly caused by huge workload and lack of time and themes to cover. I had several posts as drafts, but failed to write them to the end. Instead as a kind of escape from dead end I was stuck in, I decided to move the blog from &lt;a href=&#34;https://jekyllrb.com&#34;&gt;jekyll&lt;/a&gt; to &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. And additionally give it a distinctive name, though it is still hosted on the github pages.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>https://raol.io/post/moving-blog-on-hugo/</guid>
+      <description>&lt;p&gt;It&amp;rsquo;s been, unfortunately usual, long pause in my writing mainly caused by huge workload and lack of time and themes to cover. I had several posts as drafts, but failed to write them to the end. Instead as a kind of escape from dead end I was stuck in, I decided to move the blog from &lt;a href=&#34;https://jekyllrb.com&#34;&gt;jekyll&lt;/a&gt; to &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;. And additionally give it a distinctive name, though it is still hosted on the github pages.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Poor man language identification.</title>
-      <link>http://raol.io/post/poor-man-language-identification/</link>
+      <link>https://raol.io/post/poor-man-language-identification/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/poor-man-language-identification/</guid>
+      <guid>https://raol.io/post/poor-man-language-identification/</guid>
       <description>&lt;p&gt;Language identification, as it&amp;rsquo;s easy to guess, is the task of identifying the language
 of a document. For instance search engines may store the language of the indexed document
 and provide option such as &lt;em&gt;Search for English results only&lt;/em&gt; as Google does. But in order
-to store the language, engine should determine it first.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+to store the language, engine should determine it first.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>d ary heaps.</title>
-      <link>http://raol.io/post/d-ary-heaps/</link>
+      <link>https://raol.io/post/d-ary-heaps/</link>
       <pubDate>Mon, 13 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/d-ary-heaps/</guid>
+      <guid>https://raol.io/post/d-ary-heaps/</guid>
       <description>&lt;p&gt;Sometimes it&amp;rsquo;s a pleasure to abandon that very-cool-enterprise development, to
 take some book on algorithms and to solve couple of problems from it. Just to keep
 brain if not sharp, but at least not rusty. Also diving in some problem of that kind
-is the nice way to resurrect old math skills I was taught in the university.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+is the nice way to resurrect old math skills I was taught in the university.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Logging with log4net in Azure</title>
-      <link>http://raol.io/post/logging-with-log4net-in-azure/</link>
+      <link>https://raol.io/post/logging-with-log4net-in-azure/</link>
       <pubDate>Tue, 17 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/logging-with-log4net-in-azure/</guid>
+      <guid>https://raol.io/post/logging-with-log4net-in-azure/</guid>
       <description>&lt;p&gt;Though you can configure basic logging for Azure using built in
 &lt;a href=&#34;http://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-diagnostics/&#34;&gt;diagnostic tools&lt;/a&gt;
 sometimes it&amp;rsquo;s necessary to have more control on logging. So it might be a good idea
-to use log4net on top of the azure diagnostics and configure it to fit all your needs.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+to use log4net on top of the azure diagnostics and configure it to fit all your needs.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Foldr in C#</title>
-      <link>http://raol.io/post/foldr-in-c/</link>
+      <link>https://raol.io/post/foldr-in-c/</link>
       <pubDate>Thu, 06 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/foldr-in-c/</guid>
+      <guid>https://raol.io/post/foldr-in-c/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m exploring and trying to learn Haskell, or at least get better understanding of
 functional programming. So I thought it would be interesting to tease the brain
-and reimplement some of Haskell parts in my &amp;ldquo;mother tongue&amp;rdquo; C#.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+and reimplement some of Haskell parts in my &amp;ldquo;mother tongue&amp;rdquo; C#.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Machine Learning in Azure. Publishing.</title>
-      <link>http://raol.io/post/machine-learning-in-azure-publishing/</link>
+      <link>https://raol.io/post/machine-learning-in-azure-publishing/</link>
       <pubDate>Mon, 04 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/machine-learning-in-azure-publishing/</guid>
-      <description>&lt;p&gt;In the &lt;a href=&#34;http://raol.io/2014/07/21/machine-learning-in-azure/&#34;&gt;previous&lt;/a&gt; post I explained how to create new
+      <guid>https://raol.io/post/machine-learning-in-azure-publishing/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;https://raol.io/2014/07/21/machine-learning-in-azure/&#34;&gt;previous&lt;/a&gt; post I explained how to create new 
 Azure machine learning experiment and how to use linear regression to make predictions.
 The experiment is pretty cool itself as any other one, but there is one minor problem with it.
 It&amp;rsquo;s totally useless. Oh, you certainly can open it up and run all steps manually each time you need
 to predict profit (I&amp;rsquo;m still talking about previous post with synthetic experiment and synthetic dataset)
 based on city population, but, agree, it&amp;rsquo;s not very suitable. It would be nice if you had a way
-to store your trained model and supply data you need to analyze, and get back results.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+to store your trained model and supply data you need to analyze, and get back results.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Machine Learning in Azure.</title>
-      <link>http://raol.io/post/machine-learning-in-azure/</link>
+      <link>https://raol.io/post/machine-learning-in-azure/</link>
       <pubDate>Mon, 21 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/machine-learning-in-azure/</guid>
+      <guid>https://raol.io/post/machine-learning-in-azure/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s a really long pause between this post and previous one, but I hope to get pace and write more frequently.&lt;/p&gt;
-
 &lt;p&gt;This time we will review new Azure Machine Learning service that was announced recently and will solve that &amp;ldquo;boring&amp;rdquo;
-linear regression task (from my previous posts) using the ML service.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+linear regression task (from my previous posts) using the ML service.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Linear regression with scikit learn</title>
-      <link>http://raol.io/post/linear-regression-with-scikit-learn/</link>
+      <link>https://raol.io/post/linear-regression-with-scikit-learn/</link>
       <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/linear-regression-with-scikit-learn/</guid>
+      <guid>https://raol.io/post/linear-regression-with-scikit-learn/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s been a while since the last post was written. So it&amp;rsquo;s time to create new one. I know, I promised to explain
-how to choose $ \alpha $ parameter and why it matters, but not this time.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+how to choose $ \alpha $ parameter and why it matters, but not this time.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Machine learning with python. Linear regression. Part 2</title>
-      <link>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</link>
+      <link>https://raol.io/post/machine-learning-with-python-linear-regression-part-2/</link>
       <pubDate>Tue, 22 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/machine-learning-with-python-linear-regression-part-2/</guid>
-      <description>&lt;p&gt;In the first article on linear regression I promised to show how to do it better,
-so this post will be about truly scientific approach to the problem. Don&amp;rsquo;t worry if you
+      <guid>https://raol.io/post/machine-learning-with-python-linear-regression-part-2/</guid>
+      <description>&lt;p&gt;In the first article on linear regression I promised to show how to do it better, 
+so this post will be about truly scientific approach to the problem. Don&amp;rsquo;t worry if you 
 don&amp;rsquo;t get it off hand. Honestly speaking it took some time for me to figure out what&amp;rsquo;s going on
-and even now from time to time I take some paper and draw matrices/vectors to be sure I&amp;rsquo;m doing
-everything right.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+and even now from time to time I take some paper and draw matrices/vectors to be sure I&amp;rsquo;m doing 
+everything right.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Markdown spell check in Sublime</title>
-      <link>http://raol.io/post/markdown-spell-check-in-sublime/</link>
+      <link>https://raol.io/post/markdown-spell-check-in-sublime/</link>
       <pubDate>Wed, 16 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/markdown-spell-check-in-sublime/</guid>
-      <description>&lt;p&gt;Okay. There were tons of typos in my previous post, despite all reviews and fixes. So if something can be done automatically, it should be done automatically.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>https://raol.io/post/markdown-spell-check-in-sublime/</guid>
+      <description>&lt;p&gt;Okay. There were tons of typos in my previous post, despite all reviews and fixes. So if something can be done automatically, it should be done automatically.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Machine learning with Python. Linear regression. Part 1</title>
-      <link>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</link>
+      <link>https://raol.io/post/machine-learning-with-python-linear-regression-part-1/</link>
       <pubDate>Tue, 15 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/machine-learning-with-python-linear-regression-part-1/</guid>
+      <guid>https://raol.io/post/machine-learning-with-python-linear-regression-part-1/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m taking cool &lt;a href=&#34;https://www.coursera.org/course/ml&#34;&gt;Machine Learning&lt;/a&gt; class at Coursera, so to get better understanding of the material,
 decided to write a series of blog posts about it. As it clear from the post title, I&amp;rsquo;m going to explain what linear regression is and how it works.
-I don&amp;rsquo;t like to read long-long posts because somewhere in the middle I can&amp;rsquo;t get rid of feeling that the beginning of the post became vague and most of
-facts were forgotten. So it&amp;rsquo;s going to be short and painless.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+I don&amp;rsquo;t like to read long-long posts because somewhere in the middle I can&amp;rsquo;t get rid of feeling that the beginning of the post became vague and most of 
+facts were forgotten. So it&amp;rsquo;s going to be short and painless.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>ASCII Art With Python</title>
-      <link>http://raol.io/post/ascii-art-with-python/</link>
+      <link>https://raol.io/post/ascii-art-with-python/</link>
       <pubDate>Fri, 21 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/ascii-art-with-python/</guid>
+      <guid>https://raol.io/post/ascii-art-with-python/</guid>
       <description>&lt;p&gt;I was always curious about creating cool ASCII &amp;ldquo;pictures&amp;rdquo; from actual images and finally decided to figure out how to do it.
 It&amp;rsquo;s fairly simple. What we need to do is to resize image to fit in ASCII console (120 columns) keeping it&amp;rsquo;s original ratio.
-Then convert it to greyscale and map grey level to ASCII symbol.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+Then convert it to greyscale and map grey level to ASCII symbol.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Blogging with GitHub pages and Jekyll</title>
-      <link>http://raol.io/post/blogging-with-github-pages-and-jekyll/</link>
+      <link>https://raol.io/post/blogging-with-github-pages-and-jekyll/</link>
       <pubDate>Wed, 05 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/blogging-with-github-pages-and-jekyll/</guid>
+      <guid>https://raol.io/post/blogging-with-github-pages-and-jekyll/</guid>
       <description>Okay. This is going to be another article about GitHub pages, Jekyll and how to start blogging using theese cool tools. There are plenty of manuals about the topic, but since I&amp;rsquo;m windows user and spent some time trying to set up everything I&amp;rsquo;m going to describe the process from the very beginning.
 Creating GitHub pages First of all you need to create a site using GitHub pages. Go to the http://github.</description>
     </item>

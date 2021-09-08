@@ -1,28 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nltk on Raol.io</title>
-    <link>http://raol.io/tags/nltk/</link>
-    <description>Recent content in Nltk on Raol.io</description>
+    <title>nltk on Raol.io</title>
+    <link>https://raol.io/tags/nltk/</link>
+    <description>Recent content in nltk on Raol.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="http://raol.io/tags/nltk/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 19 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://raol.io/tags/nltk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Poor man language identification.</title>
-      <link>http://raol.io/post/poor-man-language-identification/</link>
+      <link>https://raol.io/post/poor-man-language-identification/</link>
       <pubDate>Mon, 19 Oct 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://raol.io/post/poor-man-language-identification/</guid>
+      <guid>https://raol.io/post/poor-man-language-identification/</guid>
       <description>&lt;p&gt;Language identification, as it&amp;rsquo;s easy to guess, is the task of identifying the language
 of a document. For instance search engines may store the language of the indexed document
 and provide option such as &lt;em&gt;Search for English results only&lt;/em&gt; as Google does. But in order
-to store the language, engine should determine it first.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+to store the language, engine should determine it first.&lt;/p&gt;</description>
     </item>
     
   </channel>

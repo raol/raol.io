@@ -1,286 +1,272 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" prefix="og: http://ogp.me/ns#" xmlns:og="http://ogp.me/ns#"><!--<![endif]-->
-
+<html>
     <head>
-                <meta charset="utf-8">
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="author" content="Oleg Rakitskiy">
-  
-	
-        <meta property="og:site_name" content="Raol.io">
-        <meta property="og:title" content="Raol.io">
-        <meta property="og:url" content="http://raol.io/post/machine-learning-with-python-linear-regression-part-2/">
-        <meta property="og:description" content="Thoughts on software engineering.">
-    
-        <meta property="og:type" content="article" />
-        <meta property="og:article:author" content="Oleg Rakitskiy" />
-        <meta property="og:article:published_time" content="2014-04-22T00:00:00Z" />
-    
-        <meta name="generator" content="Hugo 0.21-DEV" />
-        <title>Machine learning with python. Linear regression. Part 2 &middot; Raol.io</title>
-        <link rel="canonical" href="http://raol.io/" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="">
-        <link rel="stylesheet" type="text/css" href="http://raol.io/css/main.css"/>
-        <link href="/css/prism.css" rel="stylesheet" />
-        <script src="/js/prism.js"></script>
-        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300|Montserrat:700" rel="stylesheet" type="text/css">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <title>Machine learning with python. Linear regression. Part 2 &middot; </title>
+        <meta name="description" content="In the first article on linear regression I promised to show how to do it better, 
+so this post will be about truly scientific approach to the problem. Don&rsquo;t worry if you 
+don&rsquo;t get it off hand. Honestly speaking it took some time for me to figure out what&rsquo;s going on
+and even now from time to time I take some paper and draw matrices/vectors to be sure I&rsquo;m doing 
+everything right.">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="generator" content="Hugo 0.88.1" />
+        <meta name="robots" content="index,follow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://raol.io/dist/site.css">
+        <link rel="stylesheet" href="https://raol.io/dist/syntax.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin,cyrillic-ext,latin-ext,cyrillic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        
         <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
                 tex2jax: {inlineMath: [['$','$']]}
             });
-        </script>
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+        
+        
+        
+
     </head>
+    <body>
+        
 
-<body>
-<!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chrome/‎">install Google Chrome</a> to experience this site.</p><![endif]-->
+        <div id="wrapper">
+            <header class="site-header">
+                <div class="container">
+                    <div class="site-title-wrapper">
+                        
+                            <h1 class="site-title">
+                                <a href="https://raol.io/">Raol.io</a>
+                            </h1>
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Twitter" aria-label="Twitter" href="https://twitter.com/raoldev" rel="me" >
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                            <a class="button-square button-social hint--top" data-hint="Github" aria-label="Github" href="https://github.com/raol" rel="me">
+                                <i class="fa fa-github-alt" aria-hidden="true"></i>
+                            </a>
+                        
+                        
+                        
+                        
+                    </div>
 
-    <header id="site-header">
-        <div class="container">
-            <a href="http://raol.io/" alt="Raol.io"><h1 class="blog-title heading">Raol.io</h1></a>
-            <p class="blog-description">Thoughts on software engineering.</p>
-            
-                <li class="navigation_item">
-                    <a href="http://twitter.com/raoldev" title="@raoldev on Twitter"> <i class='fa fa-twitter'></i> <span class="label">@raoldev</span></a>
-                </li>
-            
-            
-            
-                <li class="navigation_item">
-                    <a href="https://github.com/raol" title="raol on github"> <i class='fa fa-github'></i> <span class="label">raol</span> </a>
-                </li>
-             
-        </div>
-    </header>
-<main class="content" role="main">
-	<div class="container">
-		<article class="post">
-	<header class="post-header">
-        <h3 class="p-post-title">Machine learning with python. Linear regression. Part 2</h3>
-    </header>
+                    <ul class="site-nav">
+                        
 
-    <section class="post-content">
-        <p>In the first article on linear regression I promised to show how to do it better,
-so this post will be about truly scientific approach to the problem. Don&rsquo;t worry if you
+                    </ul>
+                </div>
+            </header>
+
+            <div id="container">
+
+
+<div class="container">
+    <article class="post-container" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Machine learning with python. Linear regression. Part 2</h1>
+    
+    <p class="post-date post-line">
+        <span>Published <time datetime="2014-04-22" itemprop="datePublished">Tue, Apr 22, 2014</time></span>
+        <span>by</span>
+        <span itemscope="" itemprop="author" itemtype="https://schema.org/Person">
+            <span itemprop="name">
+                <a href="#" itemprop="url" rel="author"></a>
+            </span>
+        </span>
+    </p>
+    
+</header>
+
+        <div class="post-content clearfix" itemprop="articleBody">
+    
+
+    <p>In the first article on linear regression I promised to show how to do it better, 
+so this post will be about truly scientific approach to the problem. Don&rsquo;t worry if you 
 don&rsquo;t get it off hand. Honestly speaking it took some time for me to figure out what&rsquo;s going on
-and even now from time to time I take some paper and draw matrices/vectors to be sure I&rsquo;m doing
+and even now from time to time I take some paper and draw matrices/vectors to be sure I&rsquo;m doing 
 everything right.</p>
-
-<p></p>
-
 <p>First let&rsquo;s consider fairly simple example. Suppose you were given following column vector:
-$$
-\vec{X} =
-\begin{bmatrix}
-x_1 \\<br />
-x_2 \\<br />
-\vdots \\<br />
+$$ 
+\vec{X} = 
+\begin{bmatrix} 
+x_1 \\\<br>
+x_2 \\\<br>
+\vdots \\\<br>
 x_n
 \end{bmatrix}
 $$</p>
-
-<p>and you need to find sum of $ x_{n}^{2} $. I understand that it&rsquo;s trivial and synthetic example, but later
+<p>and you need to find sum of $ x_{n}^{2} $. I understand that it&rsquo;s trivial and synthetic example, but later 
 all these over-complications will come handy.</p>
-
 <p>First that that came in mind is just to make iteration over $ x_n $ and accumulate values like below.</p>
-
-<pre><code class="language-python">print sum([x**2 for x in range(1, 5)])
-</code></pre>
-
-<p>but that&rsquo;s too easy and not cool at all.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">print sum([x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span> <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span>)])
+</code></pre></div><p>but that&rsquo;s too easy and not cool at all. 
 We&rsquo;re going to use the power of linear algebra here. Fortunately I took linear algebra class in the university
 and it&rsquo;s good time to resurrect the knowledge and give it a chance. <a href="http://en.wikipedia.org/wiki/Matrix_multiplication">Matrix multiplication</a>
 works well here.</p>
-
 <p>So to get sum of squared vector elements we will use following formula
-$$
-\text{sum} =
-\begin{bmatrix}
+$$ 
+\text{sum} = 
+\begin{bmatrix} 
 x_1 &amp;
 x_2 &amp;
 \cdots &amp;
 x_n
 \end{bmatrix}
 *
-\begin{bmatrix}
-x_1 \\<br />
-x_2 \\<br />
-\vdots \\<br />
+\begin{bmatrix} 
+x_1 \\\<br>
+x_2 \\\<br>
+\vdots \\\<br>
 x_n
 \end{bmatrix} = \vec{X}^T * \vec{X}
 $$</p>
-
 <p>Now let&rsquo;s look at our problem from the first post. We have pairs of $ (x^{(i)}, y^{(i)}) $ and hypothesis $ y = \theta_0 + \theta_1*x $
 .
-If we look at this task from the slightly different angle we will see that we were given two column vectors. One for $ X $ values as input
-and second for $ Y $ values as our output. Let&rsquo;s rewrite our hypothesis in following form to make it even more obvious
+If we look at this task from the slightly different angle we will see that we were given two column vectors. One for $ X $ values as input 
+and second for $ Y $ values as our output. Let&rsquo;s rewrite our hypothesis in following form to make it even more obvious 
 $ y = \theta_0*1 + \theta_1*x $. Clear now? If not, don&rsquo;t worry, below I&rsquo;ll give detailed explanation of all the steps.</p>
-
 <p>It&rsquo;s easy to see (frankly saying it was not so obvious until I was told about it) that formula for $ Y $ looks as matrix multiplication, where $ \theta $ is column vector
-$$ \theta =
-\begin{bmatrix}
-\theta_0 \\\
-\theta_1
+$$ \theta = 
+\begin{bmatrix} 
+\theta_0 \\\ 
+\theta_1 
 \end{bmatrix} $$
 and $ X $ is $ m\times 2 $ matrix, where m is the size of our dataset. So let&rsquo;s rewrite it as</p>
-
-<p>$$
-h_{\theta}(x) =
+<p>$$ 
+h_{\theta}(x) = 
 \begin{bmatrix}
-1 &amp; x_1^{(1)} \\<br />
-1 &amp; x_1^{(2)} \\<br />
-\vdots &amp; \vdots \\<br />
+1 &amp; x_1^{(1)} \\\<br>
+1 &amp; x_1^{(2)} \\\<br>
+\vdots &amp; \vdots \\\<br>
 1 &amp; x_1^{(m)}
 \end{bmatrix}
 *
 \begin{bmatrix}
-\theta_0 \\<br />
+\theta_0 \\\<br>
 \theta_1
 \end{bmatrix}
 = \begin{bmatrix}
-y^{(1)} \\<br />
-y^{(2)} \\<br />
-\vdots \\<br />
+y^{(1)} \\\<br>
+y^{(2)} \\\<br>
+\vdots \\\<br>
 y^{(m)}
 \end{bmatrix}
 $$
 And let&rsquo;s call all those ones as $ x_0^{(i)} $
 So cost function can be rewritten in the the following vectorized form
 $$ J(\theta) = \frac{1}{2m}\sum_{i=0}^{n} (h_\theta(x^{(i)}) - y^{(i)})^2 = \frac{1}{2m}\text{sum}((X*\theta - Y)^2) $$</p>
-
-<p>Code for partial derivatives of $ J(\theta) $ function can be also vectorized. It was a brain teaser to
+<p>Code for partial derivatives of $ J(\theta) $ function can be also vectorized. It was a brain teaser to 
 write all $ \theta_j $ update in one step but when it&rsquo;s done it seems really obvious.</p>
-
 <p>We have vectorized form of $ h_{\theta}(X) - Y $ and to calculate all partial derivatives that are now written in form
-$$ \frac{\partial}{\partial \theta_j} J(\theta_j) = \frac{1}{m}\sum_{i=0}^{n} (h_\theta(x^{(i)}) - y^{(i)})x_{j}^{(i)} $$
+$$ \frac{\partial}{\partial \theta_j} J(\theta_j) = \frac{1}{m}\sum_{i=0}^{n} (h_\theta(x^{(i)}) - y^{(i)})x_{j}^{(i)} $$ 
 since $ x_{0}^{(i)} = 1 $
 Our $ \theta $ is a column vector so to decrease it we have to have the same column vector for its gradient.</p>
-
-<p>Dimension of $ h_{\theta}(X) - Y $ is $ m\times 1 $ and dimensions of $ X $ with $ x_0 $ column added is $ m\times 2 $, so to get
+<p>Dimension of $ h_{\theta}(X) - Y $ is $ m\times 1 $ and dimensions of $ X $ with $ x_0 $ column added is $ m\times 2 $, so to get 
 $ \sum_{i=0}^{n} (h_\theta(x^{(i)}) - y^{(i)})x_{j}^{(i)} $ we can transpose our $ X $ matrix to $ 2\times m $ one and multiply it
 with the $ h_{\theta}(X) - Y $ subtraction resulting vector. Below is the full formula for gradient descent
 $$ \vec{\theta} = \vec{\theta} - \frac{\alpha}{m}X^T*(h_\theta(X) - Y) $$</p>
-
-<p>And that&rsquo;s really it. We have our function parameters updated in one step. There are lots of advantages of the vectorized implementation.
-You don&rsquo;t need to bother with all those for loops when you have $ X $ with multiple features (here we have just one, but in next posts we will
-deal with multiple features and polynomial regression). Second as all calculations are rarely done by hand, more often by some
+<p>And that&rsquo;s really it. We have our function parameters updated in one step. There are lots of advantages of the vectorized implementation. 
+You don&rsquo;t need to bother with all those for loops when you have $ X $ with multiple features (here we have just one, but in next posts we will 
+deal with multiple features and polynomial regression). Second as all calculations are rarely done by hand, more often by some 
 libraries such as <code>numpy</code> in python, they will be faster because all libraries are highly optimized and use operations parallelism, thus
 vectorized approach will run much faster.</p>
-
 <p>And below is the code for the vectorized implementation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+<span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">costFunction</span>(theta, x, y):
+    <span style="color:#66d9ef">return</span> (sum((x<span style="color:#f92672">.</span>dot(theta) <span style="color:#f92672">-</span> y) <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">/</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> x<span style="color:#f92672">.</span>shape[<span style="color:#ae81ff">0</span>]))[<span style="color:#ae81ff">0</span>]
 
-def costFunction(theta, x, y):
-    return (sum((x.dot(theta) - y) ** 2) / (2 * x.shape[0]))[0]
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gradientDescent</span>(theta, x, y):
+    m <span style="color:#f92672">=</span> y<span style="color:#f92672">.</span>size;
+    numiter <span style="color:#f92672">=</span> <span style="color:#ae81ff">1500</span>
+    alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>
+    costHistory <span style="color:#f92672">=</span> []
+    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, numiter):
+        theta <span style="color:#f92672">=</span> theta <span style="color:#f92672">-</span> (alpha <span style="color:#f92672">/</span> m) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>transpose(x)<span style="color:#f92672">.</span>dot(x<span style="color:#f92672">.</span>dot(theta) <span style="color:#f92672">-</span> y)
+        costHistory<span style="color:#f92672">.</span>append(costFunction(theta, x, y))
+    <span style="color:#66d9ef">return</span> costHistory, theta
 
-def gradientDescent(theta, x, y):
-    m = y.size;
-    numiter = 1500
-    alpha = 0.01
-    costHistory = []
-    for i in range(0, numiter):
-        theta = theta - (alpha / m) * np.transpose(x).dot(x.dot(theta) - y)
-        costHistory.append(costFunction(theta, x, y))
-    return costHistory, theta
+data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>loadtxt(<span style="color:#e6db74">&#39;ex1data1.txt&#39;</span>, delimiter<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;,&#39;</span>)
 
-data = np.loadtxt('ex1data1.txt', delimiter=',')
+X <span style="color:#f92672">=</span> data[:, <span style="color:#ae81ff">0</span>]
+Y <span style="color:#f92672">=</span> data[:, <span style="color:#ae81ff">1</span>]
+Y <span style="color:#f92672">=</span> Y<span style="color:#f92672">.</span>reshape((Y<span style="color:#f92672">.</span>size, <span style="color:#ae81ff">1</span>))
+m <span style="color:#f92672">=</span> X<span style="color:#f92672">.</span>size
 
-X = data[:, 0]
-Y = data[:, 1]
-Y = Y.reshape((Y.size, 1))
-m = X.size
+t <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>ones(shape<span style="color:#f92672">=</span>(m, <span style="color:#ae81ff">2</span>))
+t[:, <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> X
+X <span style="color:#f92672">=</span> t;
+theta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>])
+theta <span style="color:#f92672">=</span> theta<span style="color:#f92672">.</span>reshape((<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>))
 
-t = np.ones(shape=(m, 2))
-t[:, 1] = X
-X = t;
-theta = np.array([0, 0])
-theta = theta.reshape((2, 1))
+costHistory, theta <span style="color:#f92672">=</span> gradientDescent(theta, X, Y)
 
-costHistory, theta = gradientDescent(theta, X, Y)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Iterations count&#34;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;J($</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">theta$) value&#34;</span>)
+plt<span style="color:#f92672">.</span>axis([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1500</span>, min(costHistory), max(costHistory)])
 
-plt.xlabel(&quot;Iterations count&quot;)
-plt.ylabel(&quot;J($\\theta$) value&quot;)
-plt.axis([0, 1500, min(costHistory), max(costHistory)])
+plt<span style="color:#f92672">.</span>plot(range(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1500</span>), costHistory)
 
-plt.plot(range(0, 1500), costHistory)
-
-plt.show()
-</code></pre>
-
-<p>Since function the same as in the first post, I won&rsquo;t show it here. Instead let&rsquo;s look at gradient work.
+plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p>Since function the same as in the first post, I won&rsquo;t show it here. Instead let&rsquo;s look at gradient work.
 We will see how cost function $ J(\theta) $ is getting lower and lower with each step of gradient descent.</p>
+<p><img src="/assets/images/linear_regression_2/theta_minimize.png" alt="Joftheta minimize"></p>
+</div>
 
-<p><img src="/assets/images/linear_regression_2/theta_minimize.png" alt="Joftheta minimize" /></p>
-    </section>
+        <footer class="post-footer clearfix">
+        <p class="post-tags">
+            <span>Tagged:</span>
+                <a href="/tags/python/">python</a>, 
+                <a href="/tags/machine-learning/">machine learning</a>
+        </p>
+    <div class="share">
+    </div>
+</footer>
 
-    <hr>
+        
+    </article>
+</div>
 
-    <footer class="post-footer">
-        <section class="f-1">
-            
-            <section class="author">
-                <p>Words by Oleg Rakitskiy</p>
-            </section>
-            
-            
-            <p class="f-post-time"><time datetime="2014-04-22T00:00:00Z">April 22, 2014</time></p>
-        </section>
-                        
-        <section class="f-2">
-            <section class="share">
-                <span>Share:
-                <a class="icon-twitter" href="http://twitter.com/share?text=Machine%20learning%20with%20python.%20Linear%20regression.%20Part%202&url=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-with-python-linear-regression-part-2%2f"
-                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="fa fa-twitter"></i>
-                </a>
-                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-with-python-linear-regression-part-2%2f"
-                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="fa fa-facebook"></i>
-                </a>
-                <a class="icon-google-plus" href="https://plus.google.com/share?url=http%3a%2f%2fraol.io%2fpost%2fmachine-learning-with-python-linear-regression-part-2%2f"
-                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="fa fa-google-plus"></i>
-                </a>
-                </span>
-            </section>
-
-            
-            	<span class="f-post-tags"><i class="fa fa-tag"></i>
-            	python, machine learning
-            	</span>
-            
-        </section>
-                        
-    </footer>
-</article>
-	</div>
-</main>
-    <footer id="site-footer">
-        <div class="container">
-          
-          <a href="http://raol.io/index.xml" title="Get the RSS feed"><span class="tooltip"><i class="fa fa-rss"></i></span></a>
-          <section>&copy; <a href="http://raol.io/">Oleg Rakitskiy</a> 2017 | All rights reserved</section>
+            </div>
         </div>
-    </footer>
 
-    <script type="text/javascript" src="http://raol.io/js/fittext.js"></script>
-    <script type="text/javascript">
-      $(".heading").fitText();
-    </script>
+        <footer class="footer">
+            <div class="container">
+                <div class="site-title-wrapper">
+                    <h1 class="site-title">
+                        <a href="https://raol.io/">Raol.io</a>
+                    </h1>
+                    <a class="button-square button-jump-top js-jump-top" href="#" aria-label="Back to Top">
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </a>
+                </div>
 
+                <p class="footer-copyright">
+                    <span>&copy; 2017 / Powered by <a href="https://gohugo.io/">Hugo</a></span>
+                </p>
+                <p class="footer-copyright">
+                    <span><a href="https://github.com/roryg/ghostwriter">Ghostwriter theme</a> By <a href="http://jollygoodthemes.com">JollyGoodThemes</a></span>
+                    <span>/ <a href="https://github.com/jbub/ghostwriter">Ported</a> to Hugo By <a href="https://github.com/jbub">jbub</a></span>
+                </p>
+            </div>
+        </footer>
 
-</body>
+        <script src="https://raol.io/js/jquery-1.11.3.min.js"></script>
+        <script src="https://raol.io/js/jquery.fitvids.js"></script>
+        <script src="https://raol.io/js/scripts.js"></script>
+    </body>
 </html>
+
